@@ -1,0 +1,179 @@
+#------------------------------------------------------------------------------------------------------------------------
+#                                                     LIBRARIES
+#------------------------------------------------------------------------------------------------------------------------
+library(tidyverse)
+library(ggplot2)
+library(plm)
+library(systemfit)
+library(estimatr)
+library(modelsummary)
+library(fixest)
+library(stargazer)
+library(haven)
+library(lmtest)
+library(AER)
+library(sandwich)
+library(car)
+library(tibble)
+library(data.table)
+library(recipes)
+library(multiwayvcov)
+library(fastDummies)
+
+#-------------------------------------------------------------------------------------------------------------------
+#                                                       START
+#-------------------------------------------------------------------------------------------------------------------
+
+
+
+#-----------------------------------------------
+# DATA
+#-----------------------------------------------
+
+census <- readRDS("census.rds")
+census_40to49 <- readRDS("census_40to49.rds")
+census_whites <- readRDS("census_whites.rds")
+census_whites_male <- readRDS("census_whites_male.rds")
+census_whites_non_south <- readRDS("census_whites_non_south.rds")
+census_whites_south <- readRDS("census_whites_south.rds")
+
+
+#-----------------------------------------------
+# Creating FIGURE I
+#-----------------------------------------------
+
+# Plotting the density
+ggplot(census_whites) +
+  geom_bar(aes(x = numlawyears,weight = adjwt),fill = "red",just = 2,width = 0.2)+
+  geom_bar(aes(x = cl,weight = adjwt),fill = "blue",just = 1,width = 0.2)+
+  geom_bar(aes(x = ca,weight = adjwt),fill = "green",just = 0,width = 0.2)+
+  geom_bar(aes(x = cca,weight = adjwt),fill = "yellow",just = -1,width = 0.2)
+
+#-----------------------------------------------
+# First Regressions
+#-----------------------------------------------
+
+# Fixed effects to be used in the regressions
+state_fe <- c(colnames(census)[46:93])
+yob_fe_40to49 <- c(colnames(census)[99:127])
+yob_fe <- c(colnames(census)[94:142])
+instruments <- c(colnames(census)[37:39])
+interactions_complete <- c(colnames(census)[148:294])
+interactions_south_40to49 <- c(colnames(census)[153:181])
+interactions_west_40to49 <- c(colnames(census)[202:230])
+interactions_midwest_40to49 <- c(colnames(census)[251:279])
+
+
+# Table I
+
+## Column 1
+
+
+
+### OLS Estimation for the first column
+col1_ols <- lm(reformulate(c("gradcap",state_fe,yob_fe_40to49),
+                           response = "lnwkwage"),
+               weights = slwt,
+               data = census_40to49)
+coeftest(col1_ols,vcovCL,cluster = census_40to49$yob_bplg)
+
+
+### IV Regression for the first column
+col1_1st_stage <- lm(gradcap ~ ny7 + ny8 + ny9 + factor(yob) + factor(bplg),
+                          weights = slwt,
+                          data = census_40to49)
+coeftest(col1_1st_stage,vcovCL,cluster = census_40to49$yob_bplg)
+grad_hat <- col1_1st_stage$fitted.values # Fitted values 
+
+### F statistic cluster robust
+col1_1st_stage_F <- lm(gradcap ~ factor(yob) + factor(bplg),
+                       weights = slwt,
+                       data = census_40to49)
+
+linearHypothesis(col1_1st_stage,instruments)
+
+### Second stage of the first column
+col1_2nd_stage <- lm(lnwkwage ~ col1_1st_stage_test$fitted.values + factor(yob) + factor(bplg),
+                          weights = slwt,
+                          data = census_40to49)
+coeftest(col1_2nd_stage,vcovCL,cluster = census_40to49$yob_bplg)[2,]
+summary(col1_2nd_stage_test)
+
+
+## Column 2 
+
+### OLS regression for column 2 
+col2_ols <- lm(lnwkwage ~ gradcap + factor(yob):southern_born + 
+                 factor(yob):midwestern_born + factor(yob):western_born  + factor(bplg) + factor(yob),
+               weights = slwt,
+               data = census_40to49)
+coeftest(col2_ols,vcovCL,cluster = census_40to49$yob_bplg)
+
+### IV regression for column 2
+#### First stage
+col2_1st_stage <- lm(reformulate(c(instruments,state_fe,yob_fe_40to49,interactions_midwest_40to49,
+                                   interactions_south_40to49,interactions_west_40to49),
+                                 response = "gradcap"),
+                     weights = slwt,
+                     data = census_40to49)
+summary(col2_1st_stage)
+
+## Column 3
+
+### OLS
+col3_ols <- lm(reformulate(c("gradcap","age","age2","age3","age4","census70","census80",state_fe,yob_fe),
+                           response = "lnwkwage"),
+               weights = slwt,
+               data = census_whites_male)
+### 1st Stage 
+col3_1st_stage <- lm(reformulate(c(instruments,"age","age2","age3","age4","census70","census80",state_fe,yob_fe),
+                                 response = "gradcap"),
+                     weights = slwt,
+                     data = census_whites_male)
+summary(col3_1st_stage)
+
+### 2SLS
+
+out_adj <- lm(reformulate(c("age","age2","age3","age4","census70","census80",state_fe,yob_fe),
+                          response = "lnwkwage"),
+              weights = slwt,
+              data = census_whites_male)$residuals
+
+grad_adj <- lm(reformulate(c("age","age2","age3","age4","census70","census80",state_fe,yob_fe),
+                          response = "gradcap"),
+              weights = slwt,
+              data = census_whites_male)$residuals
+
+ny7_adj <- lm(reformulate(c("age","age2","age3","age4","census70","census80",state_fe,yob_fe),
+                          response = "ny7"),
+              weights = slwt,
+              data = census_whites_male)$residuals
+
+ny8_adj <- lm(reformulate(c("age","age2","age3","age4","census70","census80",state_fe,yob_fe),
+                          response = "ny8"),
+              weights = slwt,
+              data = census_whites_male)$residuals
+
+ny9_adj <- lm(reformulate(c("age","age2","age3","age4","census70","census80",state_fe,yob_fe),
+                          response = "ny9"),
+              weights = slwt,
+              data = census_whites_male)$residuals
+
+col3_iv <- ivreg(out_adj ~ grad_adj | ny7_adj + ny8_adj + ny9_adj,
+                 weights = slwt,
+                 data = census_whites_male)
+summary(col3_iv)
+
+## Column 4
+
+### OLS
+
+### First stage
+
+col4_1st_stage <- lm(gradcap ~ ny7 + ny8 + ny9 + age + age2 + age3 + age4 + census70 + census80 + 
+                       factor(yob) + factor(bplg) + factor(yob):southern_born + factor(yob):western_born+
+                       factor(yob):midwestern_born,
+                     weights = slwt,
+                     data = census_whites_male)
+summary(col4_1st_stage)
+
