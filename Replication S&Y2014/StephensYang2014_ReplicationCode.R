@@ -19,6 +19,7 @@ library(data.table)
 library(recipes)
 library(multiwayvcov)
 library(fastDummies)
+library(fixest)
 
 #-------------------------------------------------------------------------------------------------------------------
 #                                                       START
@@ -72,14 +73,8 @@ ggplot(census_whites) +
   geom_bar(aes(x = cca,weight = adjwt),fill = "yellow",just = -1,width = 0.2)
 
 #-----------------------------------------------
-# First Regressions
-#-----------------------------------------------
-
-
-#---------------------------
 # TABLE I
-#---------------------------
-
+#-----------------------------------------------
 
 
 #-------------
@@ -91,6 +86,8 @@ col1_ols <- lm(reformulate(c("gradcap",state_fe,yob_fe_40to49),
                            response = "lnwkwage"),
                weights = slwt,
                data = census_40to49)
+col1_ols <- feols(lnwkwage ~ gradcap | bplg + yob, data = census_40to49)
+summary(col1_ols)
 coeftest(col1_ols,vcovCL,cluster = census_40to49$yob_bplg)
 
 
