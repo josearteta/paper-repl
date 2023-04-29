@@ -82,52 +82,30 @@ ggplot(census_whites) +
 #-------------
 
 ### OLS Estimation for the first column
-col1_ols <- lm(reformulate(c("gradcap",state_fe,yob_fe_40to49),
-                           response = "lnwkwage"),
-               weights = slwt,
-               data = census_40to49)
-col1_ols <- feols(lnwkwage ~ gradcap | bplg + yob, data = census_40to49)
+# The only way to get the exact estimator found in stata is not using the slwt variable, don't know why :/
+col1_ols <- feols(lnwkwage ~ gradcap | bplg + yob,
+                  data = census_40to49,
+                  weights = ~slwt,
+                  cluster = ~yob_bplg)
 summary(col1_ols)
-coeftest(col1_ols,vcovCL,cluster = census_40to49$yob_bplg)
 
 
 ### IV Regression for the first column
-col1_1st_stage <- lm(reformulate(c(instruments,state_fe,yob_fe_40to49),
-                                 response = "gradcap"),
-                          weights = slwt,
-                          data = census_40to49)
-coeftest(col1_1st_stage,vcovCL,cluster = census_40to49$yob_bplg)
+col1_1st_stage <- feols(gradcap ~ ny7 + ny8 + ny9 | bplg + yob,
+                        data = census_40to49,
+                        weights = ~slwt,
+                        cluster = ~yob_bplg)
+summary(col1_1st_stage)
 grad_hat <- col1_1st_stage$fitted.values # Fitted values 
 
 
 ### Second stage of the first column
-
-### Using FWL for the IV estimation
-out_adj <- lm(reformulate(c(state_fe,yob_fe_40to49),
-                          response = "lnwkwage"),
-              weights = slwt,
-              data = census_40to49)$residuals
-
-grad_adj <- lm(reformulate(c(state_fe,yob_fe_40to49),
-                          response = "gradcap"),
-              weights = slwt,
-              data = census_40to49)$residuals
-
-ny7_adj <- lm(reformulate(c(state_fe,yob_fe_40to49),
-                          response = "ny7"),
-              weights = slwt,
-              data = census_40to49)$residuals
-ny8_adj <- lm(reformulate(c(state_fe,yob_fe_40to49),
-                          response = "ny8"),
-              weights = slwt,
-              data = census_40to49)$residuals
-ny9_adj <- lm(reformulate(c(state_fe,yob_fe_40to49),
-                          response = "ny9"),
-              weights = slwt,
-              data = census_40to49)$residuals
-col1_iv <- ivreg(out_adj ~ grad_adj | ny7_adj + ny8_adj + ny9_adj,
-                 weights = slwt,
-                 data = census_40to49)
+# Again the estimates are a bit different from the ones in stata
+# Still need to create the correct F statistic and the correct CLR bounds
+col1_iv <- feols(lnwkwage ~ 1 | yob + bplg | gradcap ~ ny7 + ny8 + ny9,
+                 data = census_40to49,
+                 weights = ~slwt,
+                 cluster = ~yob_bplg)
 summary(col1_iv)
 
 #-------------
@@ -135,47 +113,25 @@ summary(col1_iv)
 #-------------
 
 ### OLS regression for column 2 
-col2_ols <- lm(reformulate(c("gradcap",state_fe,yob_fe_40to49,interactions_40to49),
-                           response = "lnwkwage"),
-               weights = slwt,
-               data = census_40to49)
-coeftest(col2_ols,vcovCL,cluster = census_40to49$yob_bplg)
+col2_ols <- feols(lnwkwage ~ gradcap | bplg + yob + yob^region,
+                  data = census_40to49,
+                  weights = ~slwt,
+                  cluster = ~yob_bplg)
+summary(col2_ols)
 
 ### IV regression for column 2
 #### First stage
-col2_1st_stage <- lm(reformulate(c(instruments,state_fe,yob_fe_40to49,interactions_40to49),
-                                 response = "gradcap"),
-                     weights = slwt,
-                     data = census_40to49)
+col2_1st_stage <- feols(gradcap ~ ny7 + ny8 + ny9 | yob + bplg + yob^region,
+                        data = census_40to49,
+                        weights = ~slwt,
+                        cluster = ~yob_bplg)
 summary(col2_1st_stage)
 
-
-#### Using FWL to calculate the IV estimation
-out_adj <- lm(reformulate(c(state_fe,yob_fe_40to49,interactions_40to49),
-                          response = "lnwkwage"),
-              weights = slwt,
-              data = census_40to49)$residuals
-
-grad_adj <- lm(reformulate(c(state_fe,yob_fe_40to49,interactions_40to49),
-                           response = "gradcap"),
-               weights = slwt,
-               data = census_40to49)$residuals
-
-ny7_adj <- lm(reformulate(c(state_fe,yob_fe_40to49,interactions_40to49),
-                          response = "ny7"),
-              weights = slwt,
-              data = census_40to49)$residuals
-ny8_adj <- lm(reformulate(c(state_fe,yob_fe_40to49,interactions_40to49),
-                          response = "ny8"),
-              weights = slwt,
-              data = census_40to49)$residuals
-ny9_adj <- lm(reformulate(c(state_fe,yob_fe_40to49,interactions_40to49),
-                          response = "ny9"),
-              weights = slwt,
-              data = census_40to49)$residuals
-col2_iv <- ivreg(out_adj ~ grad_adj | ny7_adj + ny8_adj + ny9_adj,
-                 weights = slwt,
-                 data = census_40to49)
+### IV estimation for column 2
+col2_iv <- feols(lnwkwage ~ 1 | yob + bplg + yob^region | gradcap ~ ny7 + ny8 + ny9,
+                 data = census_40to49,
+                 weights = ~slwt,
+                 cluster = ~yob_bplg)
 summary(col2_iv)
 
 
@@ -184,47 +140,24 @@ summary(col2_iv)
 #-------------
 
 ### OLS
-col3_ols <- lm(reformulate(c("gradcap",additional_controls,state_fe,yob_fe),
-                           response = "lnwkwage"),
-               weights = slwt,
-               data = census_whites_male)
+col3_ols <- feols(lnwkwage ~ gradcap + age + age2 + age3 + age4 + census70 + census80 | yob + bplg,
+                  data = census_whites_male,
+                  weights = ~slwt,
+                  cluster = ~yob_bplg)
 summary(col3_ols)
+
 ### 1st Stage 
-col3_1st_stage <- lm(reformulate(c(instruments,additional_controls,state_fe,yob_fe),
-                                 response = "gradcap"),
-                     weights = slwt,
-                     data = census_whites_male)
+col3_1st_stage <- feols(gradcap ~ ny7+ny8+ny9+age+age2+age3+age4+census70+census80 | yob + bplg,
+                        data = census_whites_male,
+                        weights = ~slwt,
+                        cluster = ~yob_bplg)
 summary(col3_1st_stage)
 
-### 2SLS Using FWL
-out_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe),
-                          response = "lnwkwage"),
-              weights = slwt,
-              data = census_whites_male)$residuals
-
-grad_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe),
-                          response = "gradcap"),
-              weights = slwt,
-              data = census_whites_male)$residuals
-
-ny7_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe),
-                          response = "ny7"),
-              weights = slwt,
-              data = census_whites_male)$residuals
-
-ny8_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe),
-                          response = "ny8"),
-              weights = slwt,
-              data = census_whites_male)$residuals
-
-ny9_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe),
-                          response = "ny9"),
-              weights = slwt,
-              data = census_whites_male)$residuals
-
-col3_iv <- ivreg(out_adj ~ grad_adj | ny7_adj + ny8_adj + ny9_adj,
-                 weights = slwt,
-                 data = census_whites_male)
+### IV estimation column 3
+col3_iv <- feols(lnwkwage ~ age+age2+age3+age4+census70+census80 | yob + bplg | gradcap ~ ny7 + ny8 + ny9,
+                 data = census_whites_male,
+                 weights = ~slwt,
+                 cluster = ~yob_bplg)
 summary(col3_iv)
 
 
@@ -234,49 +167,24 @@ summary(col3_iv)
 
 
 ### OLS
-col4_ols <- lm(reformulate(c("gradcap",additional_controls,state_fe,yob_fe,interactions_complete),
-                                       response = "lnwkwage"),
-                           weights = slwt,
-                           data = census_whites_male)
+col4_ols <- feols(lnwkwage ~ gradcap + age + age2 + age3 + age4 + census70 + census80 | yob + bplg + yob^region,
+                  data = census_whites_male,
+                  weights = ~slwt,
+                  cluster = ~yob_bplg)
 summary(col4_ols)
 
 ### First stage
-
-col4_1st_stage <- lm(reformulate(c(instruments, additional_controls,state_fe,yob_fe,interactions_complete),
-                                 response = "gradcap"),
-                     weights = slwt,
-                     data = census_whites_male)
+col4_1st_stage <- feols(gradcap ~ ny7+ny8+ny9+age+age2+age3+age4+census70+census80 | yob + bplg + yob^region,
+                        data = census_whites_male,
+                        weights = ~slwt,
+                        cluster = ~yob_bplg)
 summary(col4_1st_stage)
 
 ### 2SLS
-out_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,interactions_complete),
-                          response = "lnwkwage"),
-              weights = slwt,
-              data = census_whites_male)$residuals
-
-grad_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,interactions_complete),
-                           response = "gradcap"),
-               weights = slwt,
-               data = census_whites_male)$residuals
-
-ny7_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,interactions_complete),
-                          response = "ny7"),
-              weights = slwt,
-              data = census_whites_male)$residuals
-
-ny8_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,interactions_complete),
-                          response = "ny8"),
-              weights = slwt,
-              data = census_whites_male)$residuals
-
-ny9_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,interactions_complete),
-                          response = "ny9"),
-              weights = slwt,
-              data = census_whites_male)$residuals
-
-col4_iv <- ivreg(out_adj ~ grad_adj | ny7_adj + ny8_adj + ny9_adj,
-                 weights = slwt,
-                 data = census_whites_male)
+col4_iv <- feols(lnwkwage ~ age+age2+age3+age4+census70+census80 | yob + bplg + yob^region | gradcap ~ ny7+ny8+ny9,
+                 data = census_whites_male,
+                 weights = ~slwt,
+                 cluster = ~yob_bplg)
 summary(col4_iv)
 
 #-------------
@@ -285,49 +193,25 @@ summary(col4_iv)
 
 
 # OLS 
-col5_ols <- lm(reformulate(c("gradcap",additional_controls,state_fe,yob_fe,gender),
-                           response = "lnwkwage"),
-               weights = slwt,
-               data = census_whites)
+col5_ols <- feols(lnwkwage ~ gradcap + age+age2+age3+age4+census70+census80+male | yob+bplg,
+                  data = census_whites,
+                  weights = ~slwt,
+                  cluster = ~yob_bplg)
 summary(col5_ols)
 
 
 # First stage of the IV
-col5_1st_stage <- lm(reformulate(c(instruments,additional_controls,state_fe,yob_fe,gender),
-                           response = "gradcap"),
-               weights = slwt,
-               data = census_whites)
+col5_1st_stage <- feols(gradcap ~ ny7+ny8+ny9+age+age2+age3+age4+census70+census80+male | yob+bplg,
+                        data = census_whites,
+                        weights = ~slwt,
+                        cluster = ~yob_bplg)
 summary(col5_1st_stage)
 
-# FWL
-out_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "lnwkwage"),
-              weights = slwt,
-              data = census_whites)$residuals
-
-grad_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                           response = "gradcap"),
-               weights = slwt,
-               data = census_whites)$residuals
-
-ny7_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "ny7"),
-              weights = slwt,
-              data = census_whites)$residuals
-
-ny8_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "ny8"),
-              weights = slwt,
-              data = census_whites)$residuals
-
-ny9_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "ny9"),
-              weights = slwt,
-              data = census_whites)$residuals
-
-col4_iv <- ivreg(out_adj ~ grad_adj | ny7_adj + ny8_adj + ny9_adj,
-                 weights = slwt,
-                 data = census_whites)
+# 2SLS
+col4_iv <- feols(lnwkwage ~ age+age2+age3+age4+census70+census80+male |yob+bplg| gradcap ~ ny7+ny8+ny9,
+                 data = census_whites,
+                 weights = ~slwt,
+                 cluster = ~yob_bplg)
 summary(col4_iv)
 
 #-------------
@@ -336,100 +220,51 @@ summary(col4_iv)
 
 
 # OLS 
-col6_ols <- lm(reformulate(c("gradcap",additional_controls,state_fe,yob_fe,gender,interactions_complete),
-                           response = "lnwkwage"),
-               weights = slwt,
-               data = census_whites)
+col6_ols <- feols(lnwkwage ~ gradcap + age+age2+age3+age4+census70+census80+male |yob+bplg+yob^region,
+                  data = census_whites,
+                  weights = ~slwt,
+                  cluster = ~yob_bplg)
 summary(col6_ols)
 
 
 # First stage of the IV
-col6_1st_stage <- lm(reformulate(c(instruments,additional_controls,state_fe,yob_fe,gender,interactions_complete),
-                                 response = "gradcap"),
-                     weights = slwt,
-                     data = census_whites)
+col6_1st_stage <- feols(gradcap ~ ny7+ny8+ny9+age+age2+age3+age4+census70+census80+male | yob+bplg+yob^region,
+                        data = census_whites,
+                        weights = ~slwt,
+                        cluster = ~yob_bplg)
 summary(col6_1st_stage)
 
-# FWL
-out_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender,interactions_complete),
-                          response = "lnwkwage"),
-              weights = slwt,
-              data = census_whites)$residuals
-
-grad_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender,interactions_complete),
-                           response = "gradcap"),
-               weights = slwt,
-               data = census_whites)$residuals
-
-ny7_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender,interactions_complete),
-                          response = "ny7"),
-              weights = slwt,
-              data = census_whites)$residuals
-
-ny8_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender,interactions_complete),
-                          response = "ny8"),
-              weights = slwt,
-              data = census_whites)$residuals
-
-ny9_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender,interactions_complete),
-                          response = "ny9"),
-              weights = slwt,
-              data = census_whites)$residuals
-
-col6_iv <- ivreg(out_adj ~ grad_adj | ny7_adj + ny8_adj + ny9_adj,
-                 weights = slwt,
-                 data = census_whites)
+# 2SLS
+col6_iv <- feols(lnwkwage ~ age+age2+age3+age4+census70+census80+male |yob+bplg+yob^region| gradcap ~ ny7+ny8+ny9,
+                 data = census_whites,
+                 weights = ~slwt,
+                 cluster = ~yob_bplg)
 summary(col6_iv)
 
 #-------------
 # COMLUMN VII
 #-------------
 
-
 # OLS 
-col7_ols <- lm(reformulate(c("gradcap",additional_controls,state_fe,yob_fe,gender),
-                           response = "lnwkwage"),
-               weights = slwt,
-               data = census_whites_non_south)
+col7_ols <- feols(lnwkwage ~ gradcap + age+age2+age3+age4+census70+census80+male | yob+bplg,
+                  data = census_whites_non_south,
+                  weights = ~slwt,
+                  cluster = ~yob_bplg)
 summary(col7_ols)
 
 
 # First stage of the IV
-col7_1st_stage <- lm(reformulate(c(instruments,additional_controls,state_fe,yob_fe,gender),
-                                 response = "gradcap"),
-                     weights = slwt,
-                     data = census_whites_non_south)
+col7_1st_stage <- feols(gradcap ~ ny7+ny8+ny9 + age+age2+age3+age4+census70+census80+male | yob+bplg,
+                        data = census_whites_non_south,
+                        weights = ~slwt,
+                        cluster = ~yob_bplg)
 summary(col7_1st_stage)
 
-# FWL
-out_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "lnwkwage"),
-              weights = slwt,
-              data = census_whites_non_south)$residuals
-
-grad_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                           response = "gradcap"),
-               weights = slwt,
-               data = census_whites_non_south)$residuals
-
-ny7_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "ny7"),
-              weights = slwt,
-              data = census_whites_non_south)$residuals
-
-ny8_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "ny8"),
-              weights = slwt,
-              data = census_whites_non_south)$residuals
-
-ny9_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "ny9"),
-              weights = slwt,
-              data = census_whites_non_south)$residuals
-
-col7_iv <- ivreg(out_adj ~ grad_adj | ny7_adj + ny8_adj + ny9_adj,
-                 weights = slwt,
-                 data = census_whites_non_south)
+# 2SLS
+col7_iv <- feols(lnwkwage ~ age+age2+age3+age4+census70+census80+male | yob+bplg | gradcap ~ ny7+ny8+ny9,
+                 data = census_whites_non_south,
+                 weights = ~slwt,
+                 cluster = ~yob_bplg)
 summary(col7_iv)
 
 #-------------
@@ -438,47 +273,28 @@ summary(col7_iv)
 
 
 # OLS 
-col8_ols <- lm(reformulate(c("gradcap",additional_controls,state_fe,yob_fe,gender),
-                           response = "lnwkwage"),
-               weights = slwt,
-               data = census_whites_south)
+col8_ols <- feols(lnwkwage ~ gradcap + age+age2+age3+age4+census70+census80+male | yob+bplg,
+                  data = census_whites_south,
+                  weights = ~slwt,
+                  cluster = ~yob_bplg)
 summary(col8_ols)
 
 
 # First stage of the IV
-col8_1st_stage <- lm(reformulate(c(instruments,additional_controls,state_fe,yob_fe,gender),
-                                 response = "gradcap"),
-                     weights = slwt,
-                     data = census_whites_south)
+col8_1st_stage <- feols(gradcap ~ ny7+ny8+ny9 + age+age2+age3+age4+census70+census80+male | yob+bplg,
+                        data = census_whites_south,
+                        weights = ~slwt,
+                        cluster = ~yob_bplg)
 summary(col8_1st_stage)
 
-# FWL
-out_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "lnwkwage"),
-              weights = slwt,
-              data = census_whites_south)$residuals
-
-grad_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                           response = "gradcap"),
-               weights = slwt,
-               data = census_whites_south)$residuals
-
-ny7_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "ny7"),
-              weights = slwt,
-              data = census_whites_south)$residuals
-
-ny8_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "ny8"),
-              weights = slwt,
-              data = census_whites_south)$residuals
-
-ny9_adj <- lm(reformulate(c(additional_controls,state_fe,yob_fe,gender),
-                          response = "ny9"),
-              weights = slwt,
-              data = census_whites_south)$residuals
-
-col8_iv <- ivreg(out_adj ~ grad_adj | ny7_adj + ny8_adj + ny9_adj,
-                 weights = slwt,
-                 data = census_whites_south)
+# 2SLS
+col8_iv <- feols(lnwkwage ~ age+age2+age3+age4+census70+census80+male | yob+bplg | gradcap ~ ny7+ny8+ny9,
+                 data = census_whites_south,
+                 weights = ~slwt,
+                 cluster = ~yob_bplg)
 summary(col8_iv)
+
+
+#-----------------------------------------------
+# TABLE II
+#-----------------------------------------------
