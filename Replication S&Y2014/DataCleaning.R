@@ -42,25 +42,30 @@ schooling_laws_aa$cca <- ifelse(is.na(schooling_laws_aa$cca),0,schooling_laws_aa
 # Cleaning the 1960 census data
 cens1960clean <- cens1960ext %>%
   mutate(yob = ifelse(birthqtr == 1, year - age,year - age - 1), # Relevant year of birth
-         weeks = case_when(wkswork2 == 0 ~ 0, wkswork2 == 1 ~ 8.5 , wkswork2 == 2 ~ 21.9, wkswork2 == 3 ~ 33.2,
+         weeks = case_when(wkswork2 == 0 ~ 0, wkswork2 == 1 ~ 8.5 , wkswork2 == 2 ~ 21.9, wkswork2 == 3 ~ 33.2, # Adjusting the Measure of weeks worked
                            wkswork2 == 4 ~ 42.6, wkswork2 == 5 ~ 48.3, wkswork2 == 6 ~ 51.8),
-         incwage = case_when(incwage > 13500 & incwage != NA ~ 20250, TRUE ~ incwage),
-         gradcap = case_when(higrade >=0 & higrade <= 3 ~ 0,higrade >= 4 & higrade <= 20 ~ higrade - 3,
+         incwage = case_when(incwage > 13500 & incwage != NA ~ 20250, TRUE ~ incwage), # Adjusting the wage to the relevant range
+         gradcap = case_when(higrade >=0 & higrade <= 3 ~ 0,higrade >= 4 & higrade <= 20 ~ higrade - 3, # Capped measure of Schooling
                              higrade >= 21 & higrade <= 23 ~ 17, TRUE ~ higrade)) %>%
   filter(yob >= 1905 & yob <= 1934, # Desired age range
-         bpl != 15, bpl != 2,bpl <= 56 & bpl >= 1,
-         statefip != 15, statefip != 2,statefip <= 56 & statefip >= 1,
-         incwage > 0) %>%
-  mutate(lnwkwage = log(incwage/weeks),
-         lnoccscore = log(occscore),
-         male = ifelse(sex == 1,1,0),
-         white = ifelse(race == 1,1,0),
-         yearat14 = year - age + 14,
-         black = ifelse(race == 2,1,0),
-         othrace = ifelse(race > 2,1,0),
+         bpl != 15, bpl != 2,bpl <= 56 & bpl >= 1, # Selecting only people born in the relevant states
+         statefip != 15, statefip != 2,statefip <= 56 & statefip >= 1, # Selecting only people who live in relevant states
+         incwage > 0) %>% # Non zero wages
+  mutate(lnwkwage = log(incwage/weeks), # Log wage
+         lnoccscore = log(occscore), # Log occupational score
+         male = ifelse(sex == 1,1,0), # Male dummy
+         white = ifelse(race == 1,1,0), # White dummy
+         yearat14 = year - age + 14, # Year that the person was 14 years old
+         black = ifelse(race == 2,1,0), # Black dummy
+         othrace = ifelse(race > 2,1,0), # Other race dummy
          bplg = bpl) %>%
   select(serial,pernum,year,bplg,statefip,age,birthqtr,yob,gradcap,slwt,lnoccscore,empstat,gqtype,marst,yearat14,
-         lnwkwage,male,black,othrace)
+         lnwkwage,male,black,othrace) # Selecting only the relevant columns
+
+# ----------------------------------------------------------------------------------------------#
+# The process to clean 1970 and 1980 census data is the same as done previously on 1960 data    #
+# please check the comments in the previous steps.                                              #
+#-----------------------------------------------------------------------------------------------#
 
 # Cleaning the 1970 census data
 cens1970clean <- cens1970ext %>%
@@ -131,33 +136,44 @@ census <- left_join(census,ck_school_quality_revised,by = c("bplg","yob"))
 rm("cens1960clean","cens1970clean","cens1980clean","ck_school_quality_revised","schooling_laws_aa","schooling_laws_sy")
 gc()
 
+
+
+# ----------------------------------------------------------------------------------------------#
+# This code is an attempt to replicate some STATA code exactly as it was done in STATA, thus    #
+# some of the following steps may seem inefficient, and they are, but this was only done for    #
+# educational reasons.                                                                          #
+#-----------------------------------------------------------------------------------------------#
+
+
 # Creating the schooling law dummies and cluster variables
 census <- census %>%
-  mutate(cl7 = ifelse(cl == 7,1,0),
+  mutate(cl7 = ifelse(cl == 7,1,0), # CL dummy
          cl8 = ifelse(cl == 8,1,0),
          cl9 = ifelse(cl >= 9,1,0),
          
-         ca9 = ifelse(ca == 9,1,0),
+         ca9 = ifelse(ca == 9,1,0), # CA dummy 
          ca10 = ifelse(ca == 10,1,0),
          ca11 = ifelse(ca >= 11,1,0),
          
-         corr_ca8 = ifelse(cca == 8,1,0),
+         corr_ca8 = ifelse(cca == 8,1,0), # Corrected CA dummy
          corr_ca9 = ifelse(cca == 9,1,0),
          corr_ca10 = ifelse(cca >= 10,1,0),
          
-         ny7 = ifelse(numlawyears == 7,1,0),
+         ny7 = ifelse(numlawyears == 7,1,0), # NY dummy, which will be used in the estimations
          ny8 = ifelse(numlawyears == 8,1,0),
          ny9 = ifelse(numlawyears >= 9,1,0),
          
-         yob_bplg = (yob - 1900)*100 + bplg,
+         yob_bplg = (yob - 1900)*100 + bplg, # Cluster variable, year of birth and birth place
          
-         census70 = ifelse(year == 1970,1,0),
+         census70 = ifelse(year == 1970,1,0), # Census year dummies
          census80 = ifelse(year == 1980,1,0),
-         age2 = age^2,
+         
+         age2 = age^2, # Age quartic 
          age3 = age^3,
          age4 = age^4)
 
 # Creating the dummies for the yob and for the states of birth
+# The function below automatically creates dummies for the selected column, in our case; year of birth and birth place.
 census <- dummy_cols(census,select_columns = "bplg")
 census <- dummy_cols(census,select_columns = "yob")
 census <- census %>%
@@ -165,6 +181,7 @@ census <- census %>%
 
 
 # Region dummy variables added to the cesus data
+# Using IPUMS information on the birth place codes we can create region of birth dummies.
 census <- census %>%
   mutate(southern_born = ifelse(bplg_10 == 1 | bplg_11 == 1 | bplg_12 == 1 | bplg_13 == 1 |bplg_24 == 1 |
                                   bplg_37 == 1 | bplg_45 == 1 |bplg_51 == 1 | bplg_54 == 1| bplg_1 == 1 | bplg_21 ==1 |
@@ -181,6 +198,10 @@ census <- census %>%
                             western_born == 1 ~ 4))
 
 # Creating the interaction dummy variables
+# This part of the code has the goal to create interaction dummies for the region of birth and year of birth of each
+# individual. Recall that this code is a replication, to perform interactions between FE in R the creation of these 
+# columns is not necessary, but the goal of this is to replicate the cleaning exactly as it was done in STATA, hence
+# we need to create the columns.
 census <- census %>%
   mutate(
     south_05 = yob_1905*southern_born,
@@ -334,14 +355,14 @@ census <- census %>%
     midwest_53 = yob_1953*midwestern_born)
 
 #-------------------------------------------------------------------------------------------------------------------
-#                                                       START FROM HERE
+#                                                       SEPARATING CENSUS 
 #-------------------------------------------------------------------------------------------------------------------
-
-
 
 #-----------------------------------------------
 # Splitting the census in the desired groups
 #-----------------------------------------------
+
+# In the following steps we split the census data into the 3 different desired datasets.
 
 census <- readRDS("census.rds")
 
