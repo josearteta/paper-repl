@@ -6,6 +6,8 @@
 library(tidyverse)
 library(haven)
 library(estimatr)
+library(magrittr)
+library(modelsummary) # For the tables
 
 # Reading the DATA
 aej_maindata <- read_dta("aej_maindata.dta")
