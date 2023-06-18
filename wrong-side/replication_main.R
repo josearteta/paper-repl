@@ -253,7 +253,7 @@ tab5_reg9 <- lm_robust(hsdrop ~ herf + lenper + agedum1 + agedum2 + agedum3 + ag
 tab5_reg10 <- lm_robust(hsdrop ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
                        clusters = name, data = table5_black_close)
 
-tab5_reg11 <- lm_robust(hasgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+tab5_reg11 <- lm_robust(hsgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
                        clusters = name, data = table5_nonblack_close)
 
 tab5_reg12 <- lm_robust(hsgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,

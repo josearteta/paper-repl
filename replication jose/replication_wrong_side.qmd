@@ -1,0 +1,500 @@
+---
+title: "Replication of the paper"
+
+execute: 
+  warning: false
+---
+
+# Replication of the Paper - Ananat 2011
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{r}
+1 + 1
+```
+
+## Introduction
+
+### Data sources
+
+For this paper the author uses
+
+## A
+
+```{r}
+# Packages used
+library(tidyverse)
+library(stargazer)
+library(haven)
+library(ggthemes)
+library(estimatr)
+library(magrittr)
+library(modelsummary)
+library(huxtable)
+library(kableExtra)
+library(sjPlot)
+library(texreg)
+```
+
+```{r}
+# Load data
+aej_maindata <- read_dta("Data/aej_maindata.dta")
+table_5 <- read_dta("Data/table_5.dta")
+table_A1 <- read_dta("Data/table_A1.dta")
+
+
+# Some minor preparations for the data
+
+# Creates Median of “railroad division index (RDI in our dataset herf)
+# Calcualtes the median of the RDI (herf)
+median_herf <- median(aej_maindata$herf)
+
+# Creates the dummy variable if RDI is below or above the median
+aej_maindata <- aej_maindata %>%
+  mutate(high_herf = factor(if_else(herf >= median_herf , 1,0) ))
+
+```
+
+
+
+
+## Generating results
+
+$$
+R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhood_i }}}{\text { area }_{\text {total }}}\right)^2
+$$
+
+
+
+```{r, fig.width=10,fig.height=9}
+ggplot(aej_maindata, aes(x =  herf, y=dism1990))+
+  geom_point(color = "#377EB8", size = 3)+
+  geom_text(aes(label = name), vjust = 1.2, color = "#377EB8", size = 5) +
+  geom_smooth(method =  "lm", se = F, color = "#E41A1C")+
+  labs(title =  "Full Sample Relationship between RDI and Segregation",
+       subtitle = "Replication of Figure 3",
+       x = "RDI",
+       y =  "1990 segregation") +
+  theme_stata()+
+  theme(plot.background = element_rect(fill = "white"),
+        plot.title = element_text(hjust = 0.5, size = 20), 
+        plot.subtitle = element_text(hjust = 0.5, size = 17), 
+        axis.title.x = element_text(hjust = 0.5, size = 17), 
+        axis.title.y = element_text(hjust = 0.5, size = 17))
+
+```
+
+
+
+
+
+$$
+\text { Index of dissimilarity }=\frac{1}{2} \sum_{i=1}^N\left|\frac{\text { black }_i}{\text { black }_{\text {total }}}-\frac{\text { nonblack }_i}{\text { nonblack }_{\text {total }}}\right| \text {, }
+$$
+```{r}
+
+```
+
+
+```{r, fig.width=10,fig.height=9}
+#| label: figure_4_rdi_distance
+#| fig-cap: "Replication of Figure 4"
+#| warning: false
+
+
+# Graph 2 of Figure 4
+ggplot(aej_maindata, aes(x = closeness, y = dism1990)) +
+  geom_line(aes(color = high_herf), stat = 'smooth', method = 'lm', se = FALSE, size = 3) +
+  geom_ribbon(aes(ymin = ..ymin.., ymax = ..ymax.., color = high_herf), 
+              stat = 'smooth', method = 'lm', linetype = 1, fill = NA) +
+  geom_point(aes(color = high_herf), size = 3) +
+  labs(title =  "Relationship between Distance to the South 
+       and Segregation, by RDI",
+       subtitle = "Replication of Figure 4",
+       x = "Distance from the South",
+       y =  "1990 segregation",
+       color = "High RDI") +
+  scale_color_manual(values = c("#E41A1C", "#377EB8")) +
+  scale_fill_manual(values = c("#E41A1C", "#377EB8"))+
+  theme_stata()+
+  theme(plot.background = element_rect(fill = "white"),
+        plot.title = element_text(hjust = 0.5, size = 20), # Centralize and bigger title
+        plot.subtitle = element_text(hjust = 0.5, size = 17), # Centralize and bigger subtitle
+        axis.title.x = element_text(hjust = 0.5, size = 17), # Centralize and bigger x axis label
+        axis.title.y = element_text(hjust = 0.5, size = 17))+ # Centralize and bigger y axis label
+  scale_x_continuous(limits = c(-1500, 0)) +
+  scale_y_continuous(limits = c(0.2, 1))
+```
+
+
+## Table 1
+
+```{r}
+# Table 1
+tab1_reg1 <- lm(dism1990 ~ herf + lenper, data = aej_maindata)
+tab1_reg2 <- lm(area1910 ~ herf + lenper, data = aej_maindata)
+tab1_reg3 <- lm(count1910 ~ herf + lenper, data = aej_maindata)
+tab1_reg4 <- lm(ethseg10 ~ herf + lenper, data = aej_maindata)
+tab1_reg5 <- lm(ethiso10 ~ herf + lenper, data = aej_maindata)
+tab1_reg6 <- lm(black1910 ~ herf + lenper, data = aej_maindata)
+tab1_reg7 <- lm(passpc ~ herf + lenper, data = aej_maindata)
+tab1_reg8 <- lm(black1920 ~ herf + lenper, data = aej_maindata)
+tab1_reg9 <- lm(ctyliterate1920 ~ herf + lenper, data = aej_maindata)
+tab1_reg10 <- lm(lfp1920 ~ herf + lenper, data = aej_maindata)
+tab1_reg11 <- lm(ctytrade_wkrs1920 ~ herf + lenper,data = aej_maindata)
+tab1_reg12 <- lm(ctymanuf_wkrs1920 ~ herf + lenper, data = aej_maindata)
+tab1_reg13 <- lm(ctyrail_wkrs1920 ~ herf + lenper, data = aej_maindata)
+tab1_reg14 <- lm(incseg ~ herf + lenper, data = aej_maindata)
+``` 
+
+
+
+
+
+```{r}
+#| output: asis
+stargazer(tab1_reg1,
+          covariate.labels = c("RDI", 
+                               "Track length per square kilometer", "Intercept"),
+          dep.var.labels = "1990 dissimilarity index",
+          title =  "FIRST STAGE - IV",
+          se = starprep(tab1_reg1, se_type = "stata"), type = "html")
+```
+
+
+```{r}
+#| output: asis
+
+stargazer(tab1_reg2, tab1_reg3, tab1_reg4,
+          tab1_reg5, tab1_reg6, tab1_reg7,
+          se = starprep(tab1_reg2, tab1_reg3,
+                        tab1_reg4, tab1_reg5, 
+                        tab1_reg6, tab1_reg7,
+                        se_type = "stata"), 
+          header = FALSE,
+          type = "html",
+          title = "Testing RDI as an Instrument",
+          covariate.labels = c("RDI", 
+                               "Track length per square kilometer",
+                               "Intercept"),
+          dep.var.labels = c("Physical area  (square miles/1,000)",
+                             "Pop. (1,000s)", 
+                             "Ethnic dissimilarity index", 
+                             "Ethnic isolation index", 
+                             "Percent blacks",
+                             "Street-cars per cap. (1,000s) (1915)"),
+          column.labels = c("FALSIFICATION CHECKS",
+                            "FALSIFICATION CHECKS",
+                            "FALSIFICATION CHECKS", 
+                            "FALSIFICATION CHECKS", 
+                            "FALSIFICATION CHECKS",
+                            "FALSIFICATION CHECKS"),
+          column.separate = c(6))
+```
+
+
+```{r}
+#| output: asis
+stargazer(tab1_reg8, tab1_reg9,
+          tab1_reg10, tab1_reg11,
+          tab1_reg12,
+          se = starprep(tab1_reg8, tab1_reg9,
+                        tab1_reg10, tab1_reg11,
+                        tab1_reg12, 
+                        se_type = "stata"), 
+          header = FALSE,
+          type = "html",
+          title = "Testing RDI as an Instrument",
+          covariate.labels = c("RDI", 
+                               "Track length per square kilometer",
+                               "Intercept"),
+          dep.var.labels = c("Percent black", 
+                             "Percent literate",
+                             "Labor force  participation",
+                             "Percent of empl. in trade",
+                             "Percent of empl. in  manufac."))
+```
+
+```{r}
+#| output: asis
+stargazer(tab1_reg13, tab1_reg14,
+          se = starprep(tab1_reg13, tab1_reg14, 
+                        se_type = "stata"), 
+          header = FALSE,
+          type = "html",
+          title = "Testing RDI as an Instrument",
+          covariate.labels = c("RDI", 
+                               "Track length per square kilometer",
+                               "Intercept"),
+          dep.var.labels = c("Percent of  empl. in railroads",
+                             "1990 income seg"))
+```
+
+
+
+
+## Table 2
+
+
+```{r}
+# Table 2 panel 1
+tab2_p1_reg1 <- lm_robust(lngini_w ~ dism1990,se_type = "stata",data = aej_maindata)
+tab2_p1_reg2 <- lm_robust(lngini_b ~ dism1990,se_type = "stata",data = aej_maindata)
+tab2_p1_reg3 <- lm_robust(povrate_w ~ dism1990,se_type = "stata",data = aej_maindata)
+tab2_p1_reg4 <- lm_robust(povrate_b ~ dism1990,se_type = "stata",data = aej_maindata)
+
+tab2_p1_ivreg1 <- iv_robust(lngini_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab2_p1_ivreg2 <- iv_robust(lngini_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab2_p1_ivreg3 <- iv_robust(povrate_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab2_p1_ivreg4 <- iv_robust(povrate_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+
+# Closeness < -400 --------------------------------------------------------------------------------------------------
+aej_maindata_tab2 <- aej_maindata %>%
+  filter(closeness < -400)
+#--------------------------------------------------------------------------------------------------------------------
+tab2_p1_reg5 <- lm_robust(lngini_w ~ herf + lenper,se_type = "stata",data = aej_maindata_tab2)
+tab2_p1_reg6 <- lm_robust(lngini_b ~ herf + lenper,se_type = "stata",data = aej_maindata_tab2)
+tab2_p1_reg7 <- lm_robust(povrate_w ~ herf + lenper,se_type = "stata",data = aej_maindata_tab2)
+tab2_p1_reg8 <- lm_robust(povrate_b ~ herf + lenper,se_type = "stata",data = aej_maindata_tab2)
+
+
+# Table 2 panel 2
+
+tab2_p2_reg1 <- lm_robust(ln90w90b ~ dism1990,se_type = "stata",data = aej_maindata)
+tab2_p2_reg2 <- lm_robust(ln10w10b ~ dism1990,se_type = "stata",data = aej_maindata)
+tab2_p2_reg3 <- lm_robust(ln90w10b ~ dism1990,se_type = "stata",data = aej_maindata)
+tab2_p2_reg4 <- lm_robust(ln90b10w ~ dism1990,se_type = "stata",data = aej_maindata)
+
+tab2_p2_ivreg1 <- iv_robust(ln90w90b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab2_p2_ivreg2 <- iv_robust(ln10w10b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab2_p2_ivreg3 <- iv_robust(ln90w10b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab2_p2_ivreg4 <- iv_robust(ln90b10w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+
+tab2_p2_reg5 <- lm_robust(ln90w90b ~ herf + lenper, se_type = "stata",data = aej_maindata_tab2)
+tab2_p2_reg6 <- lm_robust(ln10w10b ~ herf + lenper, se_type = "stata",data = aej_maindata_tab2)
+tab2_p2_reg7 <- lm_robust(ln90w10b ~ herf + lenper, se_type = "stata",data = aej_maindata_tab2)
+tab2_p2_reg8 <- lm_robust(ln90b10w ~ herf + lenper, se_type = "stata",data = aej_maindata_tab2)
+
+```
+
+
+
+## Table 3
+
+```{r}
+# Table 3 
+
+tab3_ivreg1 <- iv_robust(lngini_w ~ dism1990 + lenper + pop1990 |herf + lenper + pop1990 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg2 <- iv_robust(lngini_b ~ dism1990 + lenper + pop1990 |herf + lenper + pop1990 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg3 <- iv_robust(povrate_w ~ dism1990 + lenper + pop1990 |herf + lenper + pop1990 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg4 <- iv_robust(povrate_b ~ dism1990 + lenper + pop1990 |herf + lenper + pop1990 ,se_type = "stata",data = aej_maindata)
+
+tab3_ivreg5 <- iv_robust(lngini_w ~ dism1990 + lenper + pctbk1990 |herf + lenper + pctbk1990 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg6 <- iv_robust(lngini_b ~ dism1990 + lenper + pctbk1990 |herf + lenper + pctbk1990 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg7 <- iv_robust(povrate_w ~ dism1990 + lenper + pctbk1990 |herf + lenper + pctbk1990 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg8 <- iv_robust(povrate_b ~ dism1990 + lenper + pctbk1990 |herf + lenper + pctbk1990 ,se_type = "stata",data = aej_maindata)
+
+tab3_ivreg9 <- iv_robust(lngini_w ~ dism1990 + lenper + hsdrop_w + hsgrad_w + somecoll_w + collgrad_w + hsdrop_b + hsgrad_b + somecoll_b + collgrad_b |
+                           herf + lenper + hsdrop_w + hsgrad_w + somecoll_w + collgrad_w + hsdrop_b + hsgrad_b + somecoll_b + collgrad_b ,
+                         se_type = "stata",data = aej_maindata)
+
+tab3_ivreg10 <- iv_robust(lngini_b ~ dism1990 + lenper + hsdrop_w + hsgrad_w + somecoll_w + collgrad_w + hsdrop_b + hsgrad_b + somecoll_b + collgrad_b |
+                           herf + lenper + hsdrop_w + hsgrad_w + somecoll_w + collgrad_w + hsdrop_b + hsgrad_b + somecoll_b + collgrad_b ,
+                         se_type = "stata",data = aej_maindata)
+
+tab3_ivreg11 <- iv_robust(povrate_w ~ dism1990 + lenper + hsdrop_w + hsgrad_w + somecoll_w + collgrad_w + hsdrop_b + hsgrad_b + somecoll_b + collgrad_b |
+                           herf + lenper + hsdrop_w + hsgrad_w + somecoll_w + collgrad_w + hsdrop_b + hsgrad_b + somecoll_b + collgrad_b ,
+                         se_type = "stata",data = aej_maindata)
+
+tab3_ivreg12 <- iv_robust(povrate_b ~ dism1990 + lenper + hsdrop_w + hsgrad_w + somecoll_w + collgrad_w + hsdrop_b + hsgrad_b + somecoll_b + collgrad_b |
+                           herf + lenper + hsdrop_w + hsgrad_w + somecoll_w + collgrad_w + hsdrop_b + hsgrad_b + somecoll_b + collgrad_b ,
+                         se_type = "stata",data = aej_maindata)
+
+tab3_ivreg13 <- iv_robust(lngini_w ~ dism1990 + lenper + manshr |herf + lenper + manshr ,se_type = "stata",data = aej_maindata)
+tab3_ivreg14 <- iv_robust(lngini_b ~ dism1990 + lenper + manshr |herf + lenper + manshr ,se_type = "stata",data = aej_maindata)
+tab3_ivreg15 <- iv_robust(povrate_w ~ dism1990 + lenper + manshr |herf + lenper + manshr ,se_type = "stata",data = aej_maindata)
+tab3_ivreg16 <- iv_robust(povrate_b ~ dism1990 + lenper + manshr |herf + lenper + manshr ,se_type = "stata",data = aej_maindata)
+
+tab3_ivreg17 <- iv_robust(lngini_w ~ dism1990 + lenper + lfp_w + lfp_b |herf + lenper + lfp_w + lfp_b ,se_type = "stata",data = aej_maindata)
+tab3_ivreg18 <- iv_robust(lngini_b ~ dism1990 + lenper + lfp_w + lfp_b |herf + lenper + lfp_w + lfp_b ,se_type = "stata",data = aej_maindata)
+tab3_ivreg19 <- iv_robust(povrate_w ~ dism1990 + lenper + lfp_w + lfp_b |herf + lenper + lfp_w + lfp_b ,se_type = "stata",data = aej_maindata)
+tab3_ivreg20 <- iv_robust(povrate_b ~ dism1990 + lenper + lfp_w + lfp_b |herf + lenper + lfp_w + lfp_b ,se_type = "stata",data = aej_maindata)
+
+
+tab3_ivreg21 <- iv_robust(lngini_w ~ dism1990 + lenper + ngov62 |herf + lenper + ngov62 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg22 <- iv_robust(lngini_b ~ dism1990 + lenper + ngov62 |herf + lenper + ngov62 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg23 <- iv_robust(povrate_w ~ dism1990 + lenper + ngov62 |herf + lenper + ngov62 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg24 <- iv_robust(povrate_b ~ dism1990 + lenper + ngov62 |herf + lenper + ngov62 ,se_type = "stata",data = aej_maindata)
+
+
+tab3_ivreg25 <- iv_robust(lngini_w ~ dism1990 + lenper + count1920 |herf + lenper + count1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg26 <- iv_robust(lngini_b ~ dism1990 + lenper + count1920 |herf + lenper + count1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg27 <- iv_robust(povrate_w ~ dism1990 + lenper + count1920 |herf + lenper + count1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg28 <- iv_robust(povrate_b ~ dism1990 + lenper + count1920 |herf + lenper + count1920 ,se_type = "stata",data = aej_maindata)
+
+
+tab3_ivreg29 <- iv_robust(lngini_w ~ dism1990 + lenper + black1920 |herf + lenper + black1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg30 <- iv_robust(lngini_b ~ dism1990 + lenper + black1920 |herf + lenper + black1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg31 <- iv_robust(povrate_w ~ dism1990 + lenper + black1920 |herf + lenper + black1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg32 <- iv_robust(povrate_b ~ dism1990 + lenper + black1920 |herf + lenper + black1920 ,se_type = "stata",data = aej_maindata)
+
+
+tab3_ivreg33 <- iv_robust(lngini_w ~ dism1990 + lenper + ctyliterate1920 |herf + lenper + ctyliterate1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg34 <- iv_robust(lngini_b ~ dism1990 + lenper + ctyliterate1920 |herf + lenper + ctyliterate1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg35 <- iv_robust(povrate_w ~ dism1990 + lenper + ctyliterate1920 |herf + lenper + ctyliterate1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg36 <- iv_robust(povrate_b ~ dism1990 + lenper + ctyliterate1920 |herf + lenper + ctyliterate1920 ,se_type = "stata",data = aej_maindata)
+
+
+tab3_ivreg37 <- iv_robust(lngini_w ~ dism1990 + lenper + ctymanuf_wkrs1920 |herf + lenper + ctymanuf_wkrs1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg38 <- iv_robust(lngini_b ~ dism1990 + lenper + ctymanuf_wkrs1920 |herf + lenper + ctymanuf_wkrs1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg39 <- iv_robust(povrate_w ~ dism1990 + lenper + ctymanuf_wkrs1920 |herf + lenper + ctymanuf_wkrs1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg40 <- iv_robust(povrate_b ~ dism1990 + lenper + ctymanuf_wkrs1920 |herf + lenper + ctymanuf_wkrs1920 ,se_type = "stata",data = aej_maindata)
+
+tab3_ivreg41 <- iv_robust(lngini_w ~ dism1990 + lenper + lfp1920 |herf + lenper + lfp1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg42 <- iv_robust(lngini_b ~ dism1990 + lenper + lfp1920 |herf + lenper + lfp1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg43 <- iv_robust(povrate_w ~ dism1990 + lenper + lfp1920 |herf + lenper + lfp1920 ,se_type = "stata",data = aej_maindata)
+tab3_ivreg44 <- iv_robust(povrate_b ~ dism1990 + lenper + lfp1920 |herf + lenper + lfp1920 ,se_type = "stata",data = aej_maindata)
+
+tab3_ivreg45 <- iv_robust(lngini_w ~ dism1990 + lenper + herfscore |herf + lenper + herfscore ,se_type = "stata",data = aej_maindata)
+tab3_ivreg46 <- iv_robust(lngini_b ~ dism1990 + lenper + herfscore |herf + lenper + herfscore ,se_type = "stata",data = aej_maindata)
+tab3_ivreg47 <- iv_robust(povrate_w ~ dism1990 + lenper + herfscore |herf + lenper + herfscore ,se_type = "stata",data = aej_maindata)
+tab3_ivreg48 <- iv_robust(povrate_b ~ dism1990 + lenper + herfscore |herf + lenper + herfscore ,se_type = "stata",data = aej_maindata)
+
+```
+
+
+
+
+## Table 4
+
+```{r}
+# Table 4 
+
+tab4_reg1 <- lm_robust(mv_st_winus_w ~ dism1990, se_type = "stata",data = aej_maindata)
+tab4_reg2 <- lm_robust(mv_st_winus_b ~ dism1990, se_type = "stata",data = aej_maindata)
+tab4_reg3 <- lm_robust(medgrent_w ~ dism1990, se_type = "stata",data = aej_maindata)
+tab4_reg4 <- lm_robust(medgrent_b ~ dism1990, se_type = "stata",data = aej_maindata)
+tab4_reg5 <- lm_robust(medgrentpinc_w ~ dism1990, se_type = "stata",data = aej_maindata)
+tab4_reg6 <- lm_robust(medgrentpinc_b ~ dism1990, se_type = "stata",data = aej_maindata)
+tab4_reg7 <- lm_robust(mt1proom_w ~ dism1990, se_type = "stata",data = aej_maindata)
+tab4_reg8 <- lm_robust(mt1proom_b ~ dism1990, se_type = "stata",data = aej_maindata)
+
+tab4_ivreg1 <- iv_robust(mv_st_winus_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab4_ivreg2 <- iv_robust(mv_st_winus_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab4_ivreg3 <- iv_robust(medgrent_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab4_ivreg4 <- iv_robust(medgrent_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab4_ivreg5 <- iv_robust(medgrentpinc_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab4_ivreg6 <- iv_robust(medgrentpinc_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab4_ivreg7 <- iv_robust(mt1proom_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab4_ivreg8 <- iv_robust(mt1proom_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+
+tab4_reg9 <- lm_robust(mv_st_winus_w ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
+tab4_reg10 <- lm_robust(mv_st_winus_b ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
+tab4_reg11 <- lm_robust(medgrent_w ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
+tab4_reg12 <- lm_robust(medgrent_b ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
+tab4_reg13 <- lm_robust(medgrentpinc_w ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
+tab4_reg14 <- lm_robust(medgrentpinc_b ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
+tab4_reg15 <- lm_robust(mt1proom_w ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
+tab4_reg16 <- lm_robust(mt1proom_b ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
+
+```
+
+
+
+## Table 5
+
+
+```{r}
+# Separating the table 5 data into the two desired groups --------------------------------------------------------
+
+table_5_black <- table_5 %>%
+  filter(black == 1)
+
+table_5_nonblack <- table_5 %>%
+  filter(black == 0)
+
+#-----------------------------------------------------------------------------------------------------------------
+
+tab5_reg1 <- lm_robust(hsdrop ~ dism1980 + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name,data = table_5_nonblack)
+tab5_reg2 <- lm_robust(hsdrop ~ dism1980 + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name,data = table_5_black)
+tab5_reg3 <- lm_robust(hsgrad ~ dism1980 + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name,data = table_5_nonblack)
+tab5_reg4 <- lm_robust(hsgrad ~ dism1980 + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name,data = table_5_black)
+tab5_reg5 <- lm_robust(somecoll ~ dism1980 + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name,data = table_5_nonblack)
+tab5_reg6 <- lm_robust(somecoll ~ dism1980 + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name,data = table_5_black)
+tab5_reg7 <- lm_robust(collgrad ~ dism1980 + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name,data = table_5_nonblack)
+tab5_reg8 <- lm_robust(collgrad ~ dism1980 + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name,data = table_5_black)
+
+tab5_ivreg1 <- iv_robust(hsdrop ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
+                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                         clusters = name, data = table_5_nonblack)
+
+tab5_ivreg2 <- iv_robust(hsdrop ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
+                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                         clusters = name, data = table_5_black)
+
+tab5_ivreg3 <- iv_robust(hsgrad ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
+                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                         clusters = name, data = table_5_nonblack)
+
+tab5_ivreg4 <- iv_robust(hsgrad ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
+                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                         clusters = name, data = table_5_black)
+
+tab5_ivreg5 <- iv_robust(somecoll ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
+                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                         clusters = name, data = table_5_nonblack)
+
+tab5_ivreg6 <- iv_robust(somecoll ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
+                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                         clusters = name, data = table_5_black)
+
+tab5_ivreg7 <- iv_robust(collgrad ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
+                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                         clusters = name, data = table_5_nonblack)
+
+tab5_ivreg8 <- iv_robust(collgrad ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
+                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                         clusters = name, data = table_5_black)
+
+# Filtering the close data ---------------------------------------------------------------------------------------------
+
+table5_black_close <- table_5_black %>%
+  filter(closeness < -400)
+table5_nonblack_close <- table_5_nonblack %>%
+  filter(closeness < -400)
+# ----------------------------------------------------------------------------------------------------------------------
+tab5_reg9 <- lm_robust(hsdrop ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name, data = table5_nonblack_close)
+
+tab5_reg10 <- lm_robust(hsdrop ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name, data = table5_black_close)
+
+tab5_reg11 <- lm_robust(hsgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name, data = table5_nonblack_close)
+
+tab5_reg12 <- lm_robust(hsgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name, data = table5_black_close)
+
+tab5_reg13 <- lm_robust(somecoll ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name, data = table5_nonblack_close)
+
+tab5_reg14 <- lm_robust(somecoll ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name, data = table5_black_close)
+
+tab5_reg15 <- lm_robust(collgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name, data = table5_nonblack_close)
+
+tab5_reg16 <- lm_robust(collgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
+                       clusters = name, data = table5_black_close)
+```
+
+
+

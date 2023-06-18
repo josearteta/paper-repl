@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Replication of the paper</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="replication_wrong_side_files/libs/clipboard/clipboard.min.js"></script>
+<script src="replication_wrong_side_files/libs/quarto-html/quarto.js"></script>
+<script src="replication_wrong_side_files/libs/quarto-html/popper.min.js"></script>
+<script src="replication_wrong_side_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="replication_wrong_side_files/libs/quarto-html/anchor.min.js"></script>
+<link href="replication_wrong_side_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="replication_wrong_side_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="replication_wrong_side_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="replication_wrong_side_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="replication_wrong_side_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Replication of the paper</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="replication-of-the-paper---ananat-2011" class="level1">
+<h1>Replication of the Paper - Ananat 2011</h1>
+<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="data-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-sources">Data sources</h3>
+<p>For this paper the author uses</p>
+</section>
+</section>
+<section id="a" class="level2">
+<h2 class="anchored" data-anchor-id="a">A</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages used</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(estimatr)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(huxtable)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(texreg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>aej_maindata <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"Data/aej_maindata.dta"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>table_5 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"Data/table_5.dta"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>table_A1 <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"Data/table_A1.dta"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Some minor preparations for the data</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates Median of “railroad division index (RDI in our dataset herf)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcualtes the median of the RDI (herf)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>median_herf <span class="ot">&lt;-</span> <span class="fu">median</span>(aej_maindata<span class="sc">$</span>herf)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates the dummy variable if RDI is below or above the median</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>aej_maindata <span class="ot">&lt;-</span> aej_maindata <span class="sc">%&gt;%</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high_herf =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(herf <span class="sc">&gt;=</span> median_herf , <span class="dv">1</span>,<span class="dv">0</span>) ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="generating-results" class="level2">
+<h2 class="anchored" data-anchor-id="generating-results">Generating results</h2>
+<p><span class="math display">\[
+R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhood_i }}}{\text { area }_{\text {total }}}\right)^2
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aej_maindata, <span class="fu">aes</span>(<span class="at">x =</span>  herf, <span class="at">y=</span>dism1990))<span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#377EB8"</span>, <span class="at">size =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">vjust =</span> <span class="fl">1.2</span>, <span class="at">color =</span> <span class="st">"#377EB8"</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span>  <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">"#E41A1C"</span>)<span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span>  <span class="st">"Full Sample Relationship between RDI and Segregation"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Replication of Figure 3"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"RDI"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span>  <span class="st">"1990 segregation"</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_stata</span>()<span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">20</span>), </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">17</span>), </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">17</span>), </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">17</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="replication_wrong_side_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<p><span class="math display">\[
+\text { Index of dissimilarity }=\frac{1}{2} \sum_{i=1}^N\left|\frac{\text { black }_i}{\text { black }_{\text {total }}}-\frac{\text { nonblack }_i}{\text { nonblack }_{\text {total }}}\right| \text {, }
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graph 2 of Figure 4</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aej_maindata, <span class="fu">aes</span>(<span class="at">x =</span> closeness, <span class="at">y =</span> dism1990)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> high_herf), <span class="at">stat =</span> <span class="st">'smooth'</span>, <span class="at">method =</span> <span class="st">'lm'</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> ..ymin.., <span class="at">ymax =</span> ..ymax.., <span class="at">color =</span> high_herf), </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">stat =</span> <span class="st">'smooth'</span>, <span class="at">method =</span> <span class="st">'lm'</span>, <span class="at">linetype =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> high_herf), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span>  <span class="st">"Relationship between Distance to the South </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">       and Segregation, by RDI"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Replication of Figure 4"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Distance from the South"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span>  <span class="st">"1990 segregation"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"High RDI"</span>) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#E41A1C"</span>, <span class="st">"#377EB8"</span>)) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#E41A1C"</span>, <span class="st">"#377EB8"</span>))<span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_stata</span>()<span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">20</span>), <span class="co"># Centralize and bigger title</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">17</span>), <span class="co"># Centralize and bigger subtitle</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">17</span>), <span class="co"># Centralize and bigger x axis label</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">17</span>))<span class="sc">+</span> <span class="co"># Centralize and bigger y axis label</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1500</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="replication_wrong_side_files/figure-html/figure_4_rdi_distance-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption class="figure-caption">Replication of Figure 4</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="table-1" class="level2">
+<h2 class="anchored" data-anchor-id="table-1">Table 1</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tab1_reg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(dism1990 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>tab1_reg2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(area1910 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>tab1_reg3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(count1910 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>tab1_reg4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ethseg10 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>tab1_reg5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ethiso10 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>tab1_reg6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(black1910 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>tab1_reg7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(passpc <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>tab1_reg8 <span class="ot">&lt;-</span> <span class="fu">lm</span>(black1920 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>tab1_reg9 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ctyliterate1920 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>tab1_reg10 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lfp1920 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>tab1_reg11 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ctytrade_wkrs1920 <span class="sc">~</span> herf <span class="sc">+</span> lenper,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>tab1_reg12 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ctymanuf_wkrs1920 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>tab1_reg13 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ctyrail_wkrs1920 <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>tab1_reg14 <span class="ot">&lt;-</span> <span class="fu">lm</span>(incseg <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">data =</span> aej_maindata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(tab1_reg1,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">covariate.labels =</span> <span class="fu">c</span>(<span class="st">"RDI"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Track length per square kilometer"</span>, <span class="st">"Intercept"</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels =</span> <span class="st">"1990 dissimilarity index"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span>  <span class="st">"FIRST STAGE - IV"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> <span class="fu">starprep</span>(tab1_reg1, <span class="at">se_type =</span> <span class="st">"stata"</span>), <span class="at">type =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<table style="text-align:center">
+<caption>
+<strong>FIRST STAGE - IV</strong>
+</caption>
+<tbody><tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+1990 dissimilarity index
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RDI
+</td>
+<td>
+0.357<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.088)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Track length per square kilometer
+</td>
+<td>
+18.514<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(10.731)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Intercept
+</td>
+<td>
+0.294<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.064)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+121
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.203
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.189
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.122 (df = 118)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+14.983<sup>***</sup> (df = 2; 118)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(tab1_reg2, tab1_reg3, tab1_reg4,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>          tab1_reg5, tab1_reg6, tab1_reg7,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> <span class="fu">starprep</span>(tab1_reg2, tab1_reg3,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                        tab1_reg4, tab1_reg5, </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                        tab1_reg6, tab1_reg7,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">se_type =</span> <span class="st">"stata"</span>), </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Testing RDI as an Instrument"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">covariate.labels =</span> <span class="fu">c</span>(<span class="st">"RDI"</span>, </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Track length per square kilometer"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Intercept"</span>),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels =</span> <span class="fu">c</span>(<span class="st">"Physical area  (square miles/1,000)"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Pop. (1,000s)"</span>, </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Ethnic dissimilarity index"</span>, </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Ethnic isolation index"</span>, </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Percent blacks"</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Street-cars per cap. (1,000s) (1915)"</span>),</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"FALSIFICATION CHECKS"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"FALSIFICATION CHECKS"</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"FALSIFICATION CHECKS"</span>, </span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"FALSIFICATION CHECKS"</span>, </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"FALSIFICATION CHECKS"</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"FALSIFICATION CHECKS"</span>),</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.separate =</span> <span class="fu">c</span>(<span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<table style="text-align:center">
+<caption>
+<strong>Testing RDI as an Instrument</strong>
+</caption>
+<tbody><tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="6">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="6" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Physical area (square miles/1,000)
+</td>
+<td>
+Pop. (1,000s)
+</td>
+<td>
+Ethnic dissimilarity index
+</td>
+<td>
+Ethnic isolation index
+</td>
+<td>
+Percent blacks
+</td>
+<td>
+Street-cars per cap. (1,000s) (1915)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="6">
+FALSIFICATION CHECKS
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+<td>
+(4)
+</td>
+<td>
+(5)
+</td>
+<td>
+(6)
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RDI
+</td>
+<td>
+-3,992.637
+</td>
+<td>
+665.751
+</td>
+<td>
+0.076
+</td>
+<td>
+0.027
+</td>
+<td>
+-0.001
+</td>
+<td>
+-132.106
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(11,986.490)
+</td>
+<td>
+(1,362.964)
+</td>
+<td>
+(0.185)
+</td>
+<td>
+(0.070)
+</td>
+<td>
+(0.010)
+</td>
+<td>
+(183.214)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Track length per square kilometer
+</td>
+<td>
+-574,401.000
+</td>
+<td>
+75,553.190
+</td>
+<td>
+15.343
+</td>
+<td>
+-12.439
+</td>
+<td>
+9.236<sup>***</sup>
+</td>
+<td>
+3,360.586
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(553,669.000)
+</td>
+<td>
+(134,814.900)
+</td>
+<td>
+(53.248)
+</td>
+<td>
+(17.288)
+</td>
+<td>
+(0.650)
+</td>
+<td>
+(20,507.370)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Intercept
+</td>
+<td>
+18,409.570<sup>**</sup>
+</td>
+<td>
+976.876
+</td>
+<td>
+0.238<sup>**</sup>
+</td>
+<td>
+0.048
+</td>
+<td>
+0.007
+</td>
+<td>
+274.892<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(8,612.320)
+</td>
+<td>
+(927.189)
+</td>
+<td>
+(0.121)
+</td>
+<td>
+(0.051)
+</td>
+<td>
+(0.007)
+</td>
+<td>
+(135.348)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+58
+</td>
+<td>
+121
+</td>
+<td>
+49
+</td>
+<td>
+49
+</td>
+<td>
+121
+</td>
+<td>
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.007
+</td>
+<td>
+0.006
+</td>
+<td>
+0.014
+</td>
+<td>
+0.009
+</td>
+<td>
+0.290
+</td>
+<td>
+0.093
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+-0.029
+</td>
+<td>
+-0.011
+</td>
+<td>
+-0.029
+</td>
+<td>
+-0.034
+</td>
+<td>
+0.278
+</td>
+<td>
+-0.088
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+15,050.340 (df = 55)
+</td>
+<td>
+1,903.415 (df = 118)
+</td>
+<td>
+0.184 (df = 46)
+</td>
+<td>
+0.075 (df = 46)
+</td>
+<td>
+0.018 (df = 118)
+</td>
+<td>
+73.196 (df = 10)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+0.186 (df = 2; 55)
+</td>
+<td>
+0.373 (df = 2; 118)
+</td>
+<td>
+0.321 (df = 2; 46)
+</td>
+<td>
+0.202 (df = 2; 46)
+</td>
+<td>
+24.147<sup>***</sup> (df = 2; 118)
+</td>
+<td>
+0.514 (df = 2; 10)
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="6" style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(tab1_reg8, tab1_reg9,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>          tab1_reg10, tab1_reg11,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>          tab1_reg12,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> <span class="fu">starprep</span>(tab1_reg8, tab1_reg9,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                        tab1_reg10, tab1_reg11,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                        tab1_reg12, </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">se_type =</span> <span class="st">"stata"</span>), </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Testing RDI as an Instrument"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">covariate.labels =</span> <span class="fu">c</span>(<span class="st">"RDI"</span>, </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Track length per square kilometer"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Intercept"</span>),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels =</span> <span class="fu">c</span>(<span class="st">"Percent black"</span>, </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Percent literate"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Labor force  participation"</span>,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Percent of empl. in trade"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Percent of empl. in  manufac."</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<table style="text-align:center">
+<caption>
+<strong>Testing RDI as an Instrument</strong>
+</caption>
+<tbody><tr>
+<td colspan="6" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="5">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Percent black
+</td>
+<td>
+Percent literate
+</td>
+<td>
+Labor force participation
+</td>
+<td>
+Percent of empl. in trade
+</td>
+<td>
+Percent of empl. in manufac.
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+<td>
+(4)
+</td>
+<td>
+(5)
+</td>
+</tr>
+<tr>
+<td colspan="6" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RDI
+</td>
+<td>
+0.013
+</td>
+<td>
+0.053<sup>*</sup>
+</td>
+<td>
+0.028
+</td>
+<td>
+-0.080
+</td>
+<td>
+0.191
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.009)
+</td>
+<td>
+(0.030)
+</td>
+<td>
+(0.024)
+</td>
+<td>
+(0.094)
+</td>
+<td>
+(0.137)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Track length per square kilometer
+</td>
+<td>
+9.119<sup>***</sup>
+</td>
+<td>
+0.180
+</td>
+<td>
+-3.427<sup>**</sup>
+</td>
+<td>
+-0.152
+</td>
+<td>
+18.400<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.615)
+</td>
+<td>
+(0.880)
+</td>
+<td>
+(1.500)
+</td>
+<td>
+(2.910)
+</td>
+<td>
+(10.911)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Intercept
+</td>
+<td>
+-0.002
+</td>
+<td>
+0.920<sup>***</sup>
+</td>
+<td>
+0.401<sup>***</sup>
+</td>
+<td>
+0.116<sup>*</sup>
+</td>
+<td>
+0.307<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.006)
+</td>
+<td>
+(0.024)
+</td>
+<td>
+(0.018)
+</td>
+<td>
+(0.067)
+</td>
+<td>
+(0.102)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="6" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+121
+</td>
+<td>
+121
+</td>
+<td>
+121
+</td>
+<td>
+121
+</td>
+<td>
+121
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.359
+</td>
+<td>
+0.042
+</td>
+<td>
+0.015
+</td>
+<td>
+0.010
+</td>
+<td>
+0.041
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.348
+</td>
+<td>
+0.026
+</td>
+<td>
+-0.002
+</td>
+<td>
+-0.006
+</td>
+<td>
+0.025
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error (df = 118)
+</td>
+<td>
+0.016
+</td>
+<td>
+0.036
+</td>
+<td>
+0.042
+</td>
+<td>
+0.113
+</td>
+<td>
+0.193
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic (df = 2; 118)
+</td>
+<td>
+33.073<sup>***</sup>
+</td>
+<td>
+2.574<sup>*</sup>
+</td>
+<td>
+0.869
+</td>
+<td>
+0.615
+</td>
+<td>
+2.542<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td colspan="6" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="5" style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(tab1_reg13, tab1_reg14,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> <span class="fu">starprep</span>(tab1_reg13, tab1_reg14, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">se_type =</span> <span class="st">"stata"</span>), </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Testing RDI as an Instrument"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">covariate.labels =</span> <span class="fu">c</span>(<span class="st">"RDI"</span>, </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Track length per square kilometer"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Intercept"</span>),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels =</span> <span class="fu">c</span>(<span class="st">"Percent of  empl. in railroads"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"1990 income seg"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<table style="text-align:center">
+<caption>
+<strong>Testing RDI as an Instrument</strong>
+</caption>
+<tbody><tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Percent of empl. in railroads
+</td>
+<td>
+1990 income seg
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+RDI
+</td>
+<td>
+-0.074
+</td>
+<td>
+0.032
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.068)
+</td>
+<td>
+(0.032)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Track length per square kilometer
+</td>
+<td>
+1.592
+</td>
+<td>
+-2.504
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(2.428)
+</td>
+<td>
+(1.626)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Intercept
+</td>
+<td>
+0.055
+</td>
+<td>
+0.196<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.051)
+</td>
+<td>
+(0.025)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+121
+</td>
+<td>
+69
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.101
+</td>
+<td>
+0.028
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.086
+</td>
+<td>
+-0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.030 (df = 118)
+</td>
+<td>
+0.032 (df = 66)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+6.656<sup>***</sup> (df = 2; 118)
+</td>
+<td>
+0.958 (df = 2; 66)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+</section>
+<section id="table-2" class="level2">
+<h2 class="anchored" data-anchor-id="table-2">Table 2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 2 panel 1</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tab2_p1_reg1 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(lngini_w <span class="sc">~</span> dism1990,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tab2_p1_reg2 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(lngini_b <span class="sc">~</span> dism1990,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>tab2_p1_reg3 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(povrate_w <span class="sc">~</span> dism1990,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>tab2_p1_reg4 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(povrate_b <span class="sc">~</span> dism1990,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>tab2_p1_ivreg1 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>tab2_p1_ivreg2 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>tab2_p1_ivreg3 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>tab2_p1_ivreg4 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Closeness &lt; -400 --------------------------------------------------------------------------------------------------</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>aej_maindata_tab2 <span class="ot">&lt;-</span> aej_maindata <span class="sc">%&gt;%</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(closeness <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">400</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#--------------------------------------------------------------------------------------------------------------------</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>tab2_p1_reg5 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(lngini_w <span class="sc">~</span> herf <span class="sc">+</span> lenper,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>tab2_p1_reg6 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(lngini_b <span class="sc">~</span> herf <span class="sc">+</span> lenper,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>tab2_p1_reg7 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(povrate_w <span class="sc">~</span> herf <span class="sc">+</span> lenper,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>tab2_p1_reg8 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(povrate_b <span class="sc">~</span> herf <span class="sc">+</span> lenper,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 2 panel 2</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>tab2_p2_reg1 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(ln90w90b <span class="sc">~</span> dism1990,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>tab2_p2_reg2 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(ln10w10b <span class="sc">~</span> dism1990,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>tab2_p2_reg3 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(ln90w10b <span class="sc">~</span> dism1990,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>tab2_p2_reg4 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(ln90b10w <span class="sc">~</span> dism1990,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>tab2_p2_ivreg1 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(ln90w90b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>tab2_p2_ivreg2 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(ln10w10b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>tab2_p2_ivreg3 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(ln90w10b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>tab2_p2_ivreg4 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(ln90b10w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>tab2_p2_reg5 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(ln90w90b <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>tab2_p2_reg6 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(ln10w10b <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>tab2_p2_reg7 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(ln90w10b <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>tab2_p2_reg8 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(ln90b10w <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata_tab2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="table-3" class="level2">
+<h2 class="anchored" data-anchor-id="table-3">Table 3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 3 </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tab3_ivreg1 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> pop1990 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> pop1990 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>tab3_ivreg2 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> pop1990 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> pop1990 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>tab3_ivreg3 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> pop1990 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> pop1990 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>tab3_ivreg4 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> pop1990 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> pop1990 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>tab3_ivreg5 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> pctbk1990 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> pctbk1990 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>tab3_ivreg6 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> pctbk1990 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> pctbk1990 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>tab3_ivreg7 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> pctbk1990 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> pctbk1990 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>tab3_ivreg8 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> pctbk1990 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> pctbk1990 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>tab3_ivreg9 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> hsdrop_w <span class="sc">+</span> hsgrad_w <span class="sc">+</span> somecoll_w <span class="sc">+</span> collgrad_w <span class="sc">+</span> hsdrop_b <span class="sc">+</span> hsgrad_b <span class="sc">+</span> somecoll_b <span class="sc">+</span> collgrad_b <span class="sc">|</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> hsdrop_w <span class="sc">+</span> hsgrad_w <span class="sc">+</span> somecoll_w <span class="sc">+</span> collgrad_w <span class="sc">+</span> hsdrop_b <span class="sc">+</span> hsgrad_b <span class="sc">+</span> somecoll_b <span class="sc">+</span> collgrad_b ,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>tab3_ivreg10 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> hsdrop_w <span class="sc">+</span> hsgrad_w <span class="sc">+</span> somecoll_w <span class="sc">+</span> collgrad_w <span class="sc">+</span> hsdrop_b <span class="sc">+</span> hsgrad_b <span class="sc">+</span> somecoll_b <span class="sc">+</span> collgrad_b <span class="sc">|</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> hsdrop_w <span class="sc">+</span> hsgrad_w <span class="sc">+</span> somecoll_w <span class="sc">+</span> collgrad_w <span class="sc">+</span> hsdrop_b <span class="sc">+</span> hsgrad_b <span class="sc">+</span> somecoll_b <span class="sc">+</span> collgrad_b ,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>                         <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>tab3_ivreg11 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> hsdrop_w <span class="sc">+</span> hsgrad_w <span class="sc">+</span> somecoll_w <span class="sc">+</span> collgrad_w <span class="sc">+</span> hsdrop_b <span class="sc">+</span> hsgrad_b <span class="sc">+</span> somecoll_b <span class="sc">+</span> collgrad_b <span class="sc">|</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> hsdrop_w <span class="sc">+</span> hsgrad_w <span class="sc">+</span> somecoll_w <span class="sc">+</span> collgrad_w <span class="sc">+</span> hsdrop_b <span class="sc">+</span> hsgrad_b <span class="sc">+</span> somecoll_b <span class="sc">+</span> collgrad_b ,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>                         <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>tab3_ivreg12 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> hsdrop_w <span class="sc">+</span> hsgrad_w <span class="sc">+</span> somecoll_w <span class="sc">+</span> collgrad_w <span class="sc">+</span> hsdrop_b <span class="sc">+</span> hsgrad_b <span class="sc">+</span> somecoll_b <span class="sc">+</span> collgrad_b <span class="sc">|</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> hsdrop_w <span class="sc">+</span> hsgrad_w <span class="sc">+</span> somecoll_w <span class="sc">+</span> collgrad_w <span class="sc">+</span> hsdrop_b <span class="sc">+</span> hsgrad_b <span class="sc">+</span> somecoll_b <span class="sc">+</span> collgrad_b ,</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>                         <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>tab3_ivreg13 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> manshr <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> manshr ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>tab3_ivreg14 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> manshr <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> manshr ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>tab3_ivreg15 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> manshr <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> manshr ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>tab3_ivreg16 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> manshr <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> manshr ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>tab3_ivreg17 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> lfp_w <span class="sc">+</span> lfp_b <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> lfp_w <span class="sc">+</span> lfp_b ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>tab3_ivreg18 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> lfp_w <span class="sc">+</span> lfp_b <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> lfp_w <span class="sc">+</span> lfp_b ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>tab3_ivreg19 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> lfp_w <span class="sc">+</span> lfp_b <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> lfp_w <span class="sc">+</span> lfp_b ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>tab3_ivreg20 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> lfp_w <span class="sc">+</span> lfp_b <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> lfp_w <span class="sc">+</span> lfp_b ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>tab3_ivreg21 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ngov62 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ngov62 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>tab3_ivreg22 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ngov62 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ngov62 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>tab3_ivreg23 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ngov62 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ngov62 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>tab3_ivreg24 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ngov62 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ngov62 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>tab3_ivreg25 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> count1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> count1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>tab3_ivreg26 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> count1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> count1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>tab3_ivreg27 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> count1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> count1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>tab3_ivreg28 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> count1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> count1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>tab3_ivreg29 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> black1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> black1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>tab3_ivreg30 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> black1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> black1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>tab3_ivreg31 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> black1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> black1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>tab3_ivreg32 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> black1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> black1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>tab3_ivreg33 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ctyliterate1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ctyliterate1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>tab3_ivreg34 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ctyliterate1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ctyliterate1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>tab3_ivreg35 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ctyliterate1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ctyliterate1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>tab3_ivreg36 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ctyliterate1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ctyliterate1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>tab3_ivreg37 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ctymanuf_wkrs1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ctymanuf_wkrs1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>tab3_ivreg38 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ctymanuf_wkrs1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ctymanuf_wkrs1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>tab3_ivreg39 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ctymanuf_wkrs1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ctymanuf_wkrs1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>tab3_ivreg40 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> ctymanuf_wkrs1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> ctymanuf_wkrs1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>tab3_ivreg41 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> lfp1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> lfp1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>tab3_ivreg42 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> lfp1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> lfp1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>tab3_ivreg43 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> lfp1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> lfp1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>tab3_ivreg44 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> lfp1920 <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> lfp1920 ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>tab3_ivreg45 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> herfscore <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> herfscore ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>tab3_ivreg46 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(lngini_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> herfscore <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> herfscore ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>tab3_ivreg47 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> herfscore <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> herfscore ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>tab3_ivreg48 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(povrate_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">+</span> herfscore <span class="sc">|</span>herf <span class="sc">+</span> lenper <span class="sc">+</span> herfscore ,<span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="table-4" class="level2">
+<h2 class="anchored" data-anchor-id="table-4">Table 4</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 4 </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tab4_reg1 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(mv_st_winus_w <span class="sc">~</span> dism1990, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>tab4_reg2 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(mv_st_winus_b <span class="sc">~</span> dism1990, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>tab4_reg3 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(medgrent_w <span class="sc">~</span> dism1990, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>tab4_reg4 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(medgrent_b <span class="sc">~</span> dism1990, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>tab4_reg5 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(medgrentpinc_w <span class="sc">~</span> dism1990, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>tab4_reg6 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(medgrentpinc_b <span class="sc">~</span> dism1990, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>tab4_reg7 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(mt1proom_w <span class="sc">~</span> dism1990, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>tab4_reg8 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(mt1proom_b <span class="sc">~</span> dism1990, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>tab4_ivreg1 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(mv_st_winus_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>tab4_ivreg2 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(mv_st_winus_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>tab4_ivreg3 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(medgrent_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>tab4_ivreg4 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(medgrent_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>tab4_ivreg5 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(medgrentpinc_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>tab4_ivreg6 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(medgrentpinc_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>tab4_ivreg7 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(mt1proom_w <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>tab4_ivreg8 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(mt1proom_b <span class="sc">~</span> dism1990 <span class="sc">+</span> lenper <span class="sc">|</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>,<span class="at">data =</span> aej_maindata)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>tab4_reg9 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(mv_st_winus_w <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>, <span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>tab4_reg10 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(mv_st_winus_b <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>, <span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>tab4_reg11 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(medgrent_w <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>, <span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>tab4_reg12 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(medgrent_b <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>, <span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>tab4_reg13 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(medgrentpinc_w <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>, <span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>tab4_reg14 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(medgrentpinc_b <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>, <span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>tab4_reg15 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(mt1proom_w <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>, <span class="at">data =</span> aej_maindata_tab2)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>tab4_reg16 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(mt1proom_b <span class="sc">~</span> herf <span class="sc">+</span> lenper, <span class="at">se_type =</span> <span class="st">"stata"</span>, <span class="at">data =</span> aej_maindata_tab2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="table-5" class="level2">
+<h2 class="anchored" data-anchor-id="table-5">Table 5</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separating the table 5 data into the two desired groups --------------------------------------------------------</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>table_5_black <span class="ot">&lt;-</span> table_5 <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(black <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>table_5_nonblack <span class="ot">&lt;-</span> table_5 <span class="sc">%&gt;%</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(black <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------------------------------------------------------</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>tab5_reg1 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(hsdrop <span class="sc">~</span> dism1980 <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name,<span class="at">data =</span> table_5_nonblack)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>tab5_reg2 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(hsdrop <span class="sc">~</span> dism1980 <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name,<span class="at">data =</span> table_5_black)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>tab5_reg3 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(hsgrad <span class="sc">~</span> dism1980 <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name,<span class="at">data =</span> table_5_nonblack)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>tab5_reg4 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(hsgrad <span class="sc">~</span> dism1980 <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name,<span class="at">data =</span> table_5_black)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>tab5_reg5 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(somecoll <span class="sc">~</span> dism1980 <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name,<span class="at">data =</span> table_5_nonblack)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>tab5_reg6 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(somecoll <span class="sc">~</span> dism1980 <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name,<span class="at">data =</span> table_5_black)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>tab5_reg7 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(collgrad <span class="sc">~</span> dism1980 <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name,<span class="at">data =</span> table_5_nonblack)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>tab5_reg8 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(collgrad <span class="sc">~</span> dism1980 <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name,<span class="at">data =</span> table_5_black)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>tab5_ivreg1 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(hsdrop <span class="sc">~</span> dism1980 <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9 <span class="sc">|</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>                         <span class="at">clusters =</span> name, <span class="at">data =</span> table_5_nonblack)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>tab5_ivreg2 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(hsdrop <span class="sc">~</span> dism1980 <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9 <span class="sc">|</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>                         <span class="at">clusters =</span> name, <span class="at">data =</span> table_5_black)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>tab5_ivreg3 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(hsgrad <span class="sc">~</span> dism1980 <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9 <span class="sc">|</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>                         <span class="at">clusters =</span> name, <span class="at">data =</span> table_5_nonblack)</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>tab5_ivreg4 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(hsgrad <span class="sc">~</span> dism1980 <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9 <span class="sc">|</span></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>                         <span class="at">clusters =</span> name, <span class="at">data =</span> table_5_black)</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>tab5_ivreg5 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(somecoll <span class="sc">~</span> dism1980 <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9 <span class="sc">|</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>                         <span class="at">clusters =</span> name, <span class="at">data =</span> table_5_nonblack)</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>tab5_ivreg6 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(somecoll <span class="sc">~</span> dism1980 <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9 <span class="sc">|</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>                         <span class="at">clusters =</span> name, <span class="at">data =</span> table_5_black)</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>tab5_ivreg7 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(collgrad <span class="sc">~</span> dism1980 <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9 <span class="sc">|</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>                         <span class="at">clusters =</span> name, <span class="at">data =</span> table_5_nonblack)</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>tab5_ivreg8 <span class="ot">&lt;-</span> <span class="fu">iv_robust</span>(collgrad <span class="sc">~</span> dism1980 <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9 <span class="sc">|</span></span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>                           herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>                         <span class="at">clusters =</span> name, <span class="at">data =</span> table_5_black)</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtering the close data ---------------------------------------------------------------------------------------------</span></span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>table5_black_close <span class="ot">&lt;-</span> table_5_black <span class="sc">%&gt;%</span></span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(closeness <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">400</span>)</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>table5_nonblack_close <span class="ot">&lt;-</span> table_5_nonblack <span class="sc">%&gt;%</span></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(closeness <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">400</span>)</span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------------------------------------------------------------------</span></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>tab5_reg9 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(hsdrop <span class="sc">~</span> herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name, <span class="at">data =</span> table5_nonblack_close)</span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>tab5_reg10 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(hsdrop <span class="sc">~</span> herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name, <span class="at">data =</span> table5_black_close)</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>tab5_reg11 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(hsgrad <span class="sc">~</span> herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name, <span class="at">data =</span> table5_nonblack_close)</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>tab5_reg12 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(hsgrad <span class="sc">~</span> herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name, <span class="at">data =</span> table5_black_close)</span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>tab5_reg13 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(somecoll <span class="sc">~</span> herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name, <span class="at">data =</span> table5_nonblack_close)</span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a>tab5_reg14 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(somecoll <span class="sc">~</span> herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name, <span class="at">data =</span> table5_black_close)</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>tab5_reg15 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(collgrad <span class="sc">~</span> herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name, <span class="at">data =</span> table5_nonblack_close)</span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>tab5_reg16 <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(collgrad <span class="sc">~</span> herf <span class="sc">+</span> lenper <span class="sc">+</span> agedum1 <span class="sc">+</span> agedum2 <span class="sc">+</span> agedum3 <span class="sc">+</span> agedum4 <span class="sc">+</span> agedum5 <span class="sc">+</span> agedum6 <span class="sc">+</span> agedum7 <span class="sc">+</span> agedum8 <span class="sc">+</span> agedum9,</span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>                       <span class="at">clusters =</span> name, <span class="at">data =</span> table5_black_close)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
