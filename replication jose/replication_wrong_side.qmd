@@ -34,6 +34,7 @@ library(huxtable)
 library(kableExtra)
 library(sjPlot)
 library(texreg)
+library(fixest)
 ```
 
 ```{r}
@@ -432,38 +433,14 @@ tab5_reg7 <- lm_robust(collgrad ~ dism1980 + agedum1 + agedum2 + agedum3 + agedu
 tab5_reg8 <- lm_robust(collgrad ~ dism1980 + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
                        clusters = name,data = table_5_black)
 
-tab5_ivreg1 <- iv_robust(hsdrop ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
-                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                         clusters = name, data = table_5_nonblack)
-
-tab5_ivreg2 <- iv_robust(hsdrop ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
-                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                         clusters = name, data = table_5_black)
-
-tab5_ivreg3 <- iv_robust(hsgrad ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
-                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                         clusters = name, data = table_5_nonblack)
-
-tab5_ivreg4 <- iv_robust(hsgrad ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
-                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                         clusters = name, data = table_5_black)
-
-tab5_ivreg5 <- iv_robust(somecoll ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
-                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                         clusters = name, data = table_5_nonblack)
-
-tab5_ivreg6 <- iv_robust(somecoll ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
-                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                         clusters = name, data = table_5_black)
-
-tab5_ivreg7 <- iv_robust(collgrad ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
-                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                         clusters = name, data = table_5_nonblack)
-
-tab5_ivreg8 <- iv_robust(collgrad ~ dism1980 + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9 |
-                           herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                         clusters = name, data = table_5_black)
-
+tab5_ivreg1 <- feols(hsdrop ~ lenper | age | dism1980 ~ herf, cluster = "name",data = table_5_nonblack)
+tab5_ivreg2 <- feols(hsdrop ~ lenper | age | dism1980 ~ herf, cluster = "name",data = table_5_black)
+tab5_ivreg3 <- feols(hsgrad ~ lenper | age | dism1980 ~ herf, cluster = "name",data = table_5_nonblack)
+tab5_ivreg4 <- feols(hsgrad ~ lenper | age | dism1980 ~ herf, cluster = "name",data = table_5_black)
+tab5_ivreg5 <- feols(somecoll ~ lenper | age | dism1980 ~ herf, cluster = "name",data = table_5_nonblack)
+tab5_ivreg6 <- feols(somecoll ~ lenper | age | dism1980 ~ herf, cluster = "name",data = table_5_black)
+tab5_ivreg7 <- feols(collgrad ~ lenper | age | dism1980 ~ herf, cluster = "name",data = table_5_nonblack)
+tab5_ivreg8 <- feols(collgrad ~ lenper | age | dism1980 ~ herf, cluster = "name",data = table_5_black)
 # Filtering the close data ---------------------------------------------------------------------------------------------
 
 table5_black_close <- table_5_black %>%
@@ -471,30 +448,49 @@ table5_black_close <- table_5_black %>%
 table5_nonblack_close <- table_5_nonblack %>%
   filter(closeness < -400)
 # ----------------------------------------------------------------------------------------------------------------------
-tab5_reg9 <- lm_robust(hsdrop ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                       clusters = name, data = table5_nonblack_close)
+tab5_reg9 <- feols(hsdrop ~ herf + lenper |age , cluster = "name", data = table5_nonblack_close)
+tab5_reg10 <- feols(hsdrop ~ herf + lenper |age , cluster = "name", data = table5_black_close)
+tab5_reg11 <- feols(hsgrad ~ herf + lenper |age , cluster = "name", data = table5_nonblack_close)
+tab5_reg12 <- feols(hsgrad ~ herf + lenper |age , cluster = "name", data = table5_black_close)
+tab5_reg13 <- feols(somecoll ~ herf + lenper |age , cluster = "name", data = table5_nonblack_close)
+tab5_reg14 <- feols(somecoll ~ herf + lenper |age , cluster = "name", data = table5_black_close)
+tab5_reg15 <- feols(collgrad ~ herf + lenper |age , cluster = "name", data = table5_nonblack_close)
+tab5_reg16 <- feols(collgrad ~ herf + lenper |age , cluster = "name", data = table5_black_close)
 
-tab5_reg10 <- lm_robust(hsdrop ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                       clusters = name, data = table5_black_close)
-
-tab5_reg11 <- lm_robust(hsgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                       clusters = name, data = table5_nonblack_close)
-
-tab5_reg12 <- lm_robust(hsgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                       clusters = name, data = table5_black_close)
-
-tab5_reg13 <- lm_robust(somecoll ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                       clusters = name, data = table5_nonblack_close)
-
-tab5_reg14 <- lm_robust(somecoll ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                       clusters = name, data = table5_black_close)
-
-tab5_reg15 <- lm_robust(collgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                       clusters = name, data = table5_nonblack_close)
-
-tab5_reg16 <- lm_robust(collgrad ~ herf + lenper + agedum1 + agedum2 + agedum3 + agedum4 + agedum5 + agedum6 + agedum7 + agedum8 + agedum9,
-                       clusters = name, data = table5_black_close)
 ```
 
 
+```{r}
+#| output: asis
+models <- list()
+models[["HS dropout"]][["White"]] <- tab5_reg1
+models[["HS dropout"]][["Black"]] <- tab5_reg2
+models[["HS graduate"]][["White"]] <- tab5_reg3
+models[["HS graduate"]][["Black"]] <- tab5_reg4
+models[["Some college"]][["White"]] <- tab5_reg5
+models[["Some college"]][["Black"]] <- tab5_reg6
+models[["College graduate"]][["White"]] <- tab5_reg7
+models[["College graduate"]][["Black"]] <- tab5_reg8
 
+models_unlisted <- unlist(models,recursive = F)
+names(models_unlisted) <- c("White","Black","White","Black","White","Black","White","Black")
+
+rows <- tribble(~term, ~White,~Black,~White,~Black,~White,~Black,~White,~Black,
+                "IV", tab5_ivreg1$coefficients[1],tab5_ivreg2$coefficients[1],tab5_ivreg3$coefficients[1],tab5_ivreg4$coefficients[1],tab5_ivreg5$coefficients[1],tab5_ivreg6$coefficients[1],tab5_ivreg7$coefficients[1],tab5_ivreg8$coefficients[1],
+                " ", tab5_ivreg1$se[1],tab5_ivreg2$se[1],tab5_ivreg3$se[1],tab5_ivreg4$se[1],tab5_ivreg5$se[1],tab5_ivreg6$se[1],tab5_ivreg7$se[1],tab5_ivreg8$se[1],
+                "Falsification", tab5_reg9$coefficients[1],tab5_reg10$coefficients[1],tab5_reg11$coefficients[1],tab5_reg12$coefficients[1],tab5_reg13$coefficients[1],tab5_reg14$coefficients[1],tab5_reg15$coefficients[1],tab5_reg16$coefficients[1],
+                " ", tab5_reg9$se[1],tab5_reg10$se[1],tab5_reg11$se[1],tab5_reg12$se[1],tab5_reg13$se[1],tab5_reg14$se[1],tab5_reg15$se[1],tab5_reg16$se[1],)
+
+
+
+
+
+msummary(models_unlisted,
+         output = "kableExtra",
+         allign = "lcccc",  
+         coef_omit = -2,
+         coef_rename = "OLS",
+         gof_map = NA,
+         add_rows = rows) %>%
+  add_header_above(c(" " = 1,"HS dropout" = 2,"HS graduate" = 2,"Some college" = 2,"College graduate" = 2), align = "cccc",underline = T)
+```
