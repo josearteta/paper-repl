@@ -1,19 +1,21 @@
 ---
-title: "Replication of the paper"
-
+title: "Replication - Ananat (AER, 2011) - The Wrong Side(s) of the Tracks: The Causal Effects of Racial Segregation on Urban Poverty and Inequality"
+author: "José Arteta and Igor Brito"
+date: "2023-06"
 execute: 
   warning: false
 ---
 
 # Replication of the Paper - Ananat 2011
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-```{r}
-1 + 1
-```
-
 ## Introduction
+
+Although there seems to exist a striking negative correlation between racial segregation and population characteristics, this relationship may not be causal. Segregation holds a longstanding position as one of the prime suspects in explaining the persistent economic inequality between blacks and whites as more segregates cities, on average, have worse characteristics than less segregated cities, which is evident on measures ranging from infant mortality to educational achievement ( Douglas S. Massey and Nancy A. Denton 1993). However, several researchers remain skeptical on the causal influence of segregation on individual labor market outcomes and human capital outcomes. This skepticism can be summarized by two main reasons : Omitted variable bias and endogenous migration. For the first case it might be that some unmeasured economic or political attribute may lead cities to have both more segregation and more negative characteristics. For the second case it might be that people dislike segregation and those with higher wages migrate.
+
+This paper examines the causal effects of racial segregation on labor market outcomes and human capital accumulation. It uses the exogenous variation of the configuration of railroad tracks configuration on american cities prior to the Great Migration, from 1915 to 1950. Historical records suggests that railroad configuration choices were determined by orientation of destinations and variation in ground slope, thus serving as an exogenous instrument. With this the author can study the phenomenon of the "wrong side of the tracks" by showing that cities that were subdivided by railroads into greater number of physically defined neighborhoods became significantly more segregated after the Great Migration. So using this instrument the author finds that increasing segregation increases inequality between a city's blacks and whites, and lowers average outcomes within the city's black community, while reducing inequality within the city's white community.
+
+![Tracks](wrongside.png)
+
 
 ### Data sources
 
@@ -61,9 +63,7 @@ aej_maindata <- aej_maindata %>%
 
 ## Generating results
 
-$$
-R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhood_i }}}{\text { area }_{\text {total }}}\right)^2
-$$
+$$R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhood_i }}}{\text { area }_{\text {total }}}\right)^2$$
 
 
 
@@ -380,27 +380,60 @@ tab4_reg6 <- lm_robust(medgrentpinc_b ~ dism1990, se_type = "stata",data = aej_m
 tab4_reg7 <- lm_robust(mt1proom_w ~ dism1990, se_type = "stata",data = aej_maindata)
 tab4_reg8 <- lm_robust(mt1proom_b ~ dism1990, se_type = "stata",data = aej_maindata)
 
-tab4_ivreg1 <- iv_robust(mv_st_winus_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
-tab4_ivreg2 <- iv_robust(mv_st_winus_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
-tab4_ivreg3 <- iv_robust(medgrent_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
-tab4_ivreg4 <- iv_robust(medgrent_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
-tab4_ivreg5 <- iv_robust(medgrentpinc_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
-tab4_ivreg6 <- iv_robust(medgrentpinc_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
-tab4_ivreg7 <- iv_robust(mt1proom_w ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
-tab4_ivreg8 <- iv_robust(mt1proom_b ~ dism1990 + lenper | herf + lenper, se_type = "stata",data = aej_maindata)
+tab4_ivreg1 <- feols(mv_st_winus_w ~ lenper | dism1990 ~ herf, vcov = "HC1", data = aej_maindata)
+tab4_ivreg2 <- feols(mv_st_winus_b ~ lenper | dism1990 ~ herf, vcov = "HC1", data = aej_maindata)
+tab4_ivreg3 <- feols(medgrent_w ~ lenper | dism1990 ~ herf, vcov = "HC1", data = aej_maindata)
+tab4_ivreg4 <- feols(medgrent_b ~ lenper | dism1990 ~ herf, vcov = "HC1", data = aej_maindata)
+tab4_ivreg5 <- feols(medgrentpinc_w ~ lenper | dism1990 ~ herf, vcov = "HC1", data = aej_maindata)
+tab4_ivreg6 <- feols(medgrentpinc_b ~ lenper | dism1990 ~ herf, vcov = "HC1", data = aej_maindata)
+tab4_ivreg7 <- feols(mt1proom_w ~ lenper | dism1990 ~ herf, vcov = "HC1", data = aej_maindata)
+tab4_ivreg8 <- feols(mt1proom_b ~ lenper | dism1990 ~ herf, vcov = "HC1", data = aej_maindata)
 
-tab4_reg9 <- lm_robust(mv_st_winus_w ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
-tab4_reg10 <- lm_robust(mv_st_winus_b ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
-tab4_reg11 <- lm_robust(medgrent_w ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
-tab4_reg12 <- lm_robust(medgrent_b ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
-tab4_reg13 <- lm_robust(medgrentpinc_w ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
-tab4_reg14 <- lm_robust(medgrentpinc_b ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
-tab4_reg15 <- lm_robust(mt1proom_w ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
-tab4_reg16 <- lm_robust(mt1proom_b ~ herf + lenper, se_type = "stata", data = aej_maindata_tab2)
+tab4_reg9 <- feols(mv_st_winus_w ~ herf +lenper, vcov = "HC1", data = aej_maindata_tab2)
+tab4_reg10 <- feols(mv_st_winus_b ~ herf + lenper, vcov = "HC1", data = aej_maindata_tab2)
+tab4_reg11 <- feols(medgrent_w ~ herf + lenper, vcov = "HC1", data = aej_maindata_tab2)
+tab4_reg12 <- feols(medgrent_b ~ herf +lenper, vcov = "HC1", data = aej_maindata_tab2)
+tab4_reg13 <- feols(medgrentpinc_w ~ herf +  lenper, vcov = "HC1", data = aej_maindata_tab2)
+tab4_reg14 <- feols(medgrentpinc_b ~ herf + lenper, vcov = "HC1", data = aej_maindata_tab2)
+tab4_reg15 <- feols(mt1proom_w ~ herf + lenper, vcov = "HC1", data = aej_maindata_tab2)
+tab4_reg16 <- feols(mt1proom_b ~ herf + lenper, vcov = "HC1", data = aej_maindata_tab2)
 
 ```
 
+```{r}
 
+models <- list()
+models[["% Migrant"]][["White"]] <- tab4_reg1
+models[["% Migrant"]][["Black"]] <- tab4_reg2
+models[["Median rent"]][["White"]] <- tab4_reg3
+models[["Median rent"]][["Black"]] <- tab4_reg4
+models[["Median rent / income"]][["White"]] <- tab4_reg5
+models[["Median rent / income"]][["Black"]] <- tab4_reg6
+models[["% More than 1 by room"]][["White"]] <- tab4_reg7
+models[["% More than 1 by room"]][["Black"]] <- tab4_reg8
+
+models_unlisted <- unlist(models,recursive = F)
+names(models_unlisted) <- c("White","Black","White","Black","White","Black","White","Black")
+
+
+rows <- tribble(~term, ~White,~Black,~White,~Black,~White,~Black,~White,~Black,
+                "IV", tab4_ivreg1$coefficients[2],tab4_ivreg2$coefficients[2],tab4_ivreg3$coefficients[2],tab4_ivreg4$coefficients[2],tab4_ivreg5$coefficients[2],tab4_ivreg6$coefficients[2],tab4_ivreg7$coefficients[2],tab4_ivreg8$coefficients[2],
+                " ", tab4_ivreg1$se[2],tab4_ivreg2$se[2],tab4_ivreg3$se[2],tab4_ivreg4$se[2],tab4_ivreg5$se[2],tab4_ivreg6$se[2],tab4_ivreg7$se[2],tab4_ivreg8$se[2],
+                "Falsification", tab4_reg9$coefficients[2],tab4_reg10$coefficients[2],tab4_reg11$coefficients[2],tab4_reg12$coefficients[2],tab4_reg13$coefficients[2],tab4_reg14$coefficients[2],tab4_reg15$coefficients[2],tab4_reg16$coefficients[2],
+                " ", tab4_reg9$se[2],tab4_reg10$se[2],tab4_reg11$se[2],tab4_reg12$se[2],tab4_reg13$se[2],tab4_reg14$se[2],tab4_reg15$se[2],tab4_reg16$se[2])
+
+
+msummary(models_unlisted,
+         title = "Table 4 - The Effects of 1990 Segregation on 1990 City Demand",
+         output = "kableExtra",
+         allign = "lcccc",  
+         coef_omit = -2,
+         coef_rename = "OLS",
+         gof_map = NA,
+         add_rows = rows) %>%
+  add_header_above(c(" " = 1,"Outcome: Percent of residents who are in-migrants" = 2,"Outcome: Median rent" = 2,"Outcome: Median as a percent of income" = 2,"Outcome: Share of households with more than one person per room" = 2), align = "cccc", underline = T)
+
+```
 
 ## Table 5
 
@@ -482,15 +515,13 @@ rows <- tribble(~term, ~White,~Black,~White,~Black,~White,~Black,~White,~Black,
                 " ", tab5_reg9$se[1],tab5_reg10$se[1],tab5_reg11$se[1],tab5_reg12$se[1],tab5_reg13$se[1],tab5_reg14$se[1],tab5_reg15$se[1],tab5_reg16$se[1],)
 
 
-
-
-
 msummary(models_unlisted,
          output = "kableExtra",
+         title = "Table 5 - The effects of 1980 dissimilarity on human capital of 22- to 30-year-olds in 1980 ",
          allign = "lcccc",  
          coef_omit = -2,
          coef_rename = "OLS",
          gof_map = NA,
          add_rows = rows) %>%
-  add_header_above(c(" " = 1,"HS dropout" = 2,"HS graduate" = 2,"Some college" = 2,"College graduate" = 2), align = "cccc",underline = T)
+  add_header_above(c(" " = 1,"Outcome: Share who are high school dropouts" = 2,"Outcome: Share who are high school graduates" = 2,"Outcome: Share who have some college" = 2,"Outcome: Share who are college graduates" = 2), align = "cccc",underline = T)
 ```
