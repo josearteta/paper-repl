@@ -127,11 +127,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="data-sources" class="level3">
 <h3 class="anchored" data-anchor-id="data-sources">Data sources</h3>
-<p>For this paper the author uses</p>
+<p>For this paper the author uses historical maps of railroad to measure the potential for segregation in different cities. Using the 19th-century maps of railroad lines across 121 cities, and focusing on a 50-square kilometer circular area centered at the historical city center, ensures that, while all cities today exceed this perimeter, about 75% of the cities were smaller than this area when the maps were created. Therefore, the measure largely includes railroads that were laid on unoccupied land, eliminating the need to consider human occupants.</p>
+<p>The researcher meticulously identified each railroad track within this four-kilometer-radius circle, measured its length, and calculated the area of the “neighborhoods” created by its intersections with other railroads.</p>
+<p>The key measure in this study is the “railroad division index” (RDI), a variation on a Herfindahl index that quantifies the extent to which a city’s land is divided into smaller units by railroads.</p>
+<p>If a city was completely undivided by railroads, meaning the area of its single neighborhood was 100% of the total city area, then the RDI would be 0. Conversely, if a city was infinitely divided by railroads, so each neighborhood had a nearly negligible area, the RDI would be 1.</p>
+<p>The <em>RDI</em> can be calculated as:</p>
+<p><span class="math display">\[
+R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhoodi }}}{\text { area }_{\text {total }}}\right)^2
+\]</span></p>
+<p>The RDIis a measure of possible boundaries within a city. A higher RDI (indicating many small neighborhoods) would suggest that it was easier to segregate the city during the Great Migration by allowing black enclaves to expand into another neighborhood while maintaining a new railroad barrier between the enclave and the rest of the city. This higher RDI could have facilitated persistent segregation even as the black population increased.</p>
+<p>In order to measure the level of segregation the author uses a different measure, the <em>dissimilarity index </em>, to quantify the actual level of racial segregation in the cities. The dissimilarity index captures the degree to which two groups (in this case, African American households and other households) are evenly spread across a city’s census tracts.</p>
+<p>The <em>dissimilarity index</em> is calculated as:</p>
+<p><span class="math display">\[
+\text { Index of dissimilarity }=\frac{1}{2} \sum_{i=1}^N\left|\frac{\text { black }_i}{\text { black }_{\text {total }}}-\frac{\text { nonblack }_i}{\text { nonblack }_{\text {total }}}\right| \text {, }
+\]</span></p>
+<p>The interpretation of the <strong>dissimilarity index</strong> is as it follow: If African American households were evenly distributed across the city’s tracts, the dissimilarity index would be close to 0, indicating full integration. However, in the scenario where African American households were concentrated in specific tracts and not present in others, the dissimilarity index would be close to 1, indicating total segregation.</p>
+<p>In a hypothetical scenario, for a city with 62 tracts that is 10 percent black, the average dissimilarity index would be 0.029 (standard deviation 0.0028) if African American households were randomly assigned across tracts. However, in reality, the mean index was found to be 0.57 (standard deviation 0.135), which indicates a significant level of segregation.</p>
+<p>To make these measurements, the study employs the Cutler/Glaeser/Vigdor segregation data available online. This dataset comprises segregation indices from various decennial censuses, spanning the 19th and 20th centuries, along with metropolitan characteristics. The data is an output of research work by Cutler and Glaeser (1997), and Cutler, Glaeser, and Vigdor (1999).</p>
 </section>
 </section>
-<section id="a" class="level2">
-<h2 class="anchored" data-anchor-id="a">A</h2>
+<section id="main-specification" class="level2">
+<h2 class="anchored" data-anchor-id="main-specification">Main Specification</h2>
+<p>The main specification of the IV approach in the context will be:</p>
+<p><span class="math display">\[
+\begin{aligned}
+S e g &amp; =\alpha_1 R D I+\alpha_2 \mathbf{X}+\mu  &amp;\text{(First Stage)} \\
+Y &amp; =\beta_1 S e g+\beta_2 \mathbf{X}+\varepsilon, &amp;\text{(Second Stage)}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><em>Y:</em> is our outcome of interest (Aggregate City Income Distributions by Race,Housing Demand and human capital of young adults)</li>
+<li><em>RDI:</em> is the index of Railroad Division Index</li>
+<li><em>Seg</em>, represents an MSA’s current level of segregation</li>
+<li><em>X</em> is a vector of control variables that always includes total railroad length and, in some specifications, includes region indicators, manufacturing share, and/or population as additional controls</li>
+</ul>
+</section>
+<section id="generating-results" class="level2">
+<h2 class="anchored" data-anchor-id="generating-results">Generating results</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages used</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -164,10 +196,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>aej_maindata <span class="ot">&lt;-</span> aej_maindata <span class="sc">%&gt;%</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high_herf =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(herf <span class="sc">&gt;=</span> median_herf , <span class="dv">1</span>,<span class="dv">0</span>) ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="generating-results" class="level2">
-<h2 class="anchored" data-anchor-id="generating-results">Generating results</h2>
-<p><span class="math display">\[R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhood_i }}}{\text { area }_{\text {total }}}\right)^2\]</span></p>
+<section id="figure-3" class="level3">
+<h3 class="anchored" data-anchor-id="figure-3">Figure 3</h3>
+<p>In order to make it easier to draw comparisons between the graphs in the paper and in our replication, we will show how they appear and then our plot.</p>
+<p>In the paper the Figure 3 appears as</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figure%203.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure 3 in the paper</figcaption>
+</figure>
+</div>
+<p>Now we present our replication:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aej_maindata, <span class="fu">aes</span>(<span class="at">x =</span>  herf, <span class="at">y=</span>dism1990))<span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#377EB8"</span>, <span class="at">size =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
@@ -187,9 +226,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="replication_wrong_side_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="960"></p>
 </div>
 </div>
-<p><span class="math display">\[
-\text { Index of dissimilarity }=\frac{1}{2} \sum_{i=1}^N\left|\frac{\text { black }_i}{\text { black }_{\text {total }}}-\frac{\text { nonblack }_i}{\text { nonblack }_{\text {total }}}\right| \text {, }
-\]</span></p>
+</section>
+<section id="figure-4" class="level3">
+<h3 class="anchored" data-anchor-id="figure-4">Figure 4</h3>
+<p>In the paper the Figure 4 appears as:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figure%204.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure 4 in the paper</figcaption>
+</figure>
+</div>
+<p>Now, our replication is:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graph 2 of Figure 4</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(aej_maindata, <span class="fu">aes</span>(<span class="at">x =</span> closeness, <span class="at">y =</span> dism1990)) <span class="sc">+</span></span>
@@ -222,6 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="table-1" class="level2">
 <h2 class="anchored" data-anchor-id="table-1">Table 1</h2>

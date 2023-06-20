@@ -19,9 +19,60 @@ This paper examines the causal effects of racial segregation on labor market out
 
 ### Data sources
 
-For this paper the author uses
+For this paper the author uses historical maps of railroad to measure the potential for segregation in different cities. Using the 19th-century maps of railroad lines across 121 cities, and focusing on a 50-square kilometer  circular area centered at the historical city center, ensures that, while all cities today exceed this perimeter, about 75% of the cities were smaller than this area when the maps were created. Therefore, the measure largely includes railroads that were laid on unoccupied land, eliminating the need to consider human occupants.
 
-## A
+The researcher meticulously identified each railroad track within this four-kilometer-radius circle, measured its length, and calculated the area of the "neighborhoods" created by its intersections with other railroads. 
+
+The key measure in this study is the "railroad division index" (RDI), a variation on a Herfindahl index that quantifies the extent to which a city’s land is divided into smaller units by railroads.
+
+
+If a city was completely undivided by railroads, meaning the area of its single neighborhood was 100% of the total city area, then the RDI would be 0. Conversely, if a city was infinitely divided by railroads, so each neighborhood had a nearly negligible area, the RDI would be 1.  
+
+The *RDI* can be calculated as:
+
+$$
+R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhoodi }}}{\text { area }_{\text {total }}}\right)^2
+$$
+
+The RDIis a measure of possible boundaries within a city. A higher RDI (indicating many small neighborhoods) would suggest that it was easier to segregate the city during the Great Migration by allowing black enclaves to expand into another neighborhood while maintaining a new railroad barrier between the enclave and the rest of the city. This higher RDI could have facilitated persistent segregation even as the black population increased. 
+
+In order to measure the level of segregation the author uses a different measure, the *dissimilarity index *, to quantify the actual level of racial segregation in the cities. The dissimilarity index captures the degree to which two groups (in this case, African American households and other households) are evenly spread across a city's census tracts.
+
+The  *dissimilarity index* is calculated as: 
+
+
+$$
+\text { Index of dissimilarity }=\frac{1}{2} \sum_{i=1}^N\left|\frac{\text { black }_i}{\text { black }_{\text {total }}}-\frac{\text { nonblack }_i}{\text { nonblack }_{\text {total }}}\right| \text {, }
+$$
+
+
+
+The interpretation of the **dissimilarity index** is as it follow: If African American households were evenly distributed across the city's tracts, the dissimilarity index would be close to 0, indicating full integration. However, in the scenario where African American households were concentrated in specific tracts and not present in others, the dissimilarity index would be close to 1, indicating total segregation.
+
+In a hypothetical scenario, for a city with 62 tracts that is 10 percent black, the average dissimilarity index would be 0.029 (standard deviation 0.0028) if African American households were randomly assigned across tracts. However, in reality, the mean index was found to be 0.57 (standard deviation 0.135), which indicates a significant level of segregation.
+
+To make these measurements, the study employs the Cutler/Glaeser/Vigdor segregation data available online. This dataset comprises segregation indices from various decennial censuses, spanning the 19th and 20th centuries, along with metropolitan characteristics. The data is an output of research work by Cutler and Glaeser (1997), and Cutler, Glaeser, and Vigdor (1999).
+
+## Main Specification
+
+The main specification of the IV approach in the context will be:
+
+$$
+\begin{aligned}
+S e g & =\alpha_1 R D I+\alpha_2 \mathbf{X}+\mu  &\text{(First Stage)} \\
+Y & =\beta_1 S e g+\beta_2 \mathbf{X}+\varepsilon, &\text{(Second Stage)}
+\end{aligned}
+$$
+
+- *Y:* is our outcome of interest (Aggregate City Income Distributions by Race,Housing Demand and human capital of young adults)
+- *RDI:* is the index of Railroad  Division Index
+- *Seg*, represents an MSA’s current level of segregation
+- *X* is a vector of control variables that always includes total railroad length and, in  some specifications, includes region indicators, manufacturing share, and/or population as additional controls
+
+
+
+
+## Generating results
 
 ```{r}
 # Packages used
@@ -59,15 +110,15 @@ aej_maindata <- aej_maindata %>%
 ```
 
 
+### Figure 3
 
+In order to make it easier to draw comparisons between the graphs in the paper and in our replication, we will show how they appear and then our plot.
 
-## Generating results
+In the paper the Figure 3 appears as
 
-$$
-R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhoodi }}}{\text { area }_{\text {total }}}\right)^2
-$$
+![Figure 3 in the paper](figure 3.png)
 
-
+Now we present our replication:
 
 ```{r, fig.width=10,fig.height=9}
 ggplot(aej_maindata, aes(x =  herf, y=dism1990))+
@@ -89,11 +140,15 @@ ggplot(aej_maindata, aes(x =  herf, y=dism1990))+
 
 
 
+### Figure 4
 
 
-$$
-\text { Index of dissimilarity }=\frac{1}{2} \sum_{i=1}^N\left|\frac{\text { black }_i}{\text { black }_{\text {total }}}-\frac{\text { nonblack }_i}{\text { nonblack }_{\text {total }}}\right| \text {, }
-$$
+In the paper the Figure 4 appears as: 
+
+
+![Figure 4 in the paper](figure 4.png)
+
+Now, our replication is:
 
 
 
