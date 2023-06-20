@@ -94,9 +94,7 @@ ggplot(aej_maindata, aes(x =  herf, y=dism1990))+
 $$
 \text { Index of dissimilarity }=\frac{1}{2} \sum_{i=1}^N\left|\frac{\text { black }_i}{\text { black }_{\text {total }}}-\frac{\text { nonblack }_i}{\text { nonblack }_{\text {total }}}\right| \text {, }
 $$
-```{r}
 
-```
 
 
 ```{r, fig.width=10,fig.height=9}
