@@ -16,7 +16,6 @@ This paper examines the causal effects of racial segregation on labor market out
 
 ![Tracks](wrongside.png)
 
-
 ### Data sources
 
 For this paper the author uses
@@ -58,16 +57,16 @@ aej_maindata <- aej_maindata %>%
 
 ```
 
-
-
-
 ## Generating results
 
-$$R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhood_i }}}{\text { area }_{\text {total }}}\right)^2$$
-
-
+$$
+R D I=1-\sum_i\left(\frac{\text { area }_{\text {neighborhoodi }}}{\text { area }_{\text {total }}}\right)^2
+$$
 
 ```{r, fig.width=10,fig.height=9}
+#| label: figure_3_rdi_distance
+#| fig-cap: "Replication of Figure 3"
+#| warning: false
 ggplot(aej_maindata, aes(x =  herf, y=dism1990))+
   geom_point(color = "#377EB8", size = 3)+
   geom_text(aes(label = name), vjust = 1.2, color = "#377EB8", size = 5) +
@@ -85,16 +84,10 @@ ggplot(aej_maindata, aes(x =  herf, y=dism1990))+
 
 ```
 
-
-
-
-
 $$
 \text { Index of dissimilarity }=\frac{1}{2} \sum_{i=1}^N\left|\frac{\text { black }_i}{\text { black }_{\text {total }}}-\frac{\text { nonblack }_i}{\text { nonblack }_{\text {total }}}\right| \text {, }
 $$
-```{r}
 
-```
 
 
 ```{r, fig.width=10,fig.height=9}
@@ -127,7 +120,6 @@ ggplot(aej_maindata, aes(x = closeness, y = dism1990)) +
   scale_y_continuous(limits = c(0.2, 1))
 ```
 
-
 ## Table 1
 
 ```{r}
@@ -146,11 +138,7 @@ tab1_reg11 <- lm(ctytrade_wkrs1920 ~ herf + lenper,data = aej_maindata)
 tab1_reg12 <- lm(ctymanuf_wkrs1920 ~ herf + lenper, data = aej_maindata)
 tab1_reg13 <- lm(ctyrail_wkrs1920 ~ herf + lenper, data = aej_maindata)
 tab1_reg14 <- lm(incseg ~ herf + lenper, data = aej_maindata)
-``` 
-
-
-
-
+```
 
 ```{r}
 #| output: asis
@@ -161,7 +149,6 @@ stargazer(tab1_reg1,
           title =  "FIRST STAGE - IV",
           se = starprep(tab1_reg1, se_type = "stata"), type = "html")
 ```
-
 
 ```{r}
 #| output: asis
@@ -192,7 +179,6 @@ stargazer(tab1_reg2, tab1_reg3, tab1_reg4,
                             "FALSIFICATION CHECKS"),
           column.separate = c(6))
 ```
-
 
 ```{r}
 #| output: asis
@@ -231,11 +217,7 @@ stargazer(tab1_reg13, tab1_reg14,
                              "1990 income seg"))
 ```
 
-
-
-
 ## Table 2
-
 
 ```{r}
 # Table 2 panel 1
@@ -278,7 +260,140 @@ tab2_p2_reg8 <- lm_robust(ln90b10w ~ herf + lenper, se_type = "stata",data = aej
 
 ```
 
+```{r}
+# Table 2 models
 
+# Function to get dism1990 coefficient
+get_stats <- function(model) {
+  tidy(model) %>% 
+    filter(term %in% c("dism1990", "herf")) %>% 
+    select(estimate, std.error, p.value) %>% 
+    as.list()
+}
+
+
+gini_list <- list(tab2_p1_reg1, tab2_p1_reg2, 
+                  tab2_p1_ivreg1, tab2_p1_ivreg2, 
+                  tab2_p1_reg5, tab2_p1_reg6)
+
+
+poverty_list <- list(tab2_p1_reg3, tab2_p1_reg4,
+                     tab2_p1_ivreg3, tab2_p1_ivreg4,
+                     tab2_p1_reg7, tab2_p1_reg8)
+
+
+# Get coefficients
+# For GINI row
+gini_coef <- as_tibble(t(sapply(gini_list, get_stats))) %>%
+  tibble::rownames_to_column(var = "model_name") %>%
+  unnest(cols = everything())
+
+# For Poverty row
+poverty_coef <- as_tibble(t(sapply(poverty_list, get_stats))) %>%
+  tibble::rownames_to_column(var = "model_name") %>%
+  unnest(cols = everything())
+
+# Function to make things quickier
+table_of_coef <- function(data_coeff){
+  table <- c()
+  for (i in 1:nrow(data_coeff)){
+    coeff_est <- round(data_coeff[i,2], digits = 3)
+    if (data_coeff[i,3] <= 0.01){
+      coeff_est <- paste0(coeff_est, "***")
+    } else if (data_coeff[i,3] > 0.01 & data_coeff[i,3] <= 0.05){
+      coeff_est <- paste0(coeff_est, "**")
+    } else if (data_coeff[i,3] > 0.05 & data_coeff[i,3] <= 0.1){
+      coeff_est <- paste0(coeff_est, "*")
+    }
+    table[i] <- paste(coeff_est, "<br>(", round(data_coeff[i,3], digits = 3), ")", sep = "")
+  }
+  return(table)
+}
+
+
+# Getting the coefficeints in matrix form
+table_2_gini <- table_of_coef(gini_coef)
+table_2_poverty <- table_of_coef(poverty_coef)
+
+# Matrix first penal Table 2
+table_2_matrix_first <- matrix(cbind(table_2_gini, table_2_poverty), ncol =  6, byrow  = T)
+
+# Add column name first half of the table
+colnames(table_2_matrix_first) <- rep(c("White", "Black"), 3)
+
+# Add rownames
+rownames(table_2_matrix_first) <- c("Gini index", "Poverty rate")
+
+# Generate first half the table 2
+table_2_first_kable <- kable(table_2_matrix_first, "html", escape = FALSE, align = c( 'l', 'c', 'l', 'c', 'l', 'c'), caption = " Table 2 - upper half") %>%
+  add_header_above(c("Outcome: " = 1, "OLS: Effect of 1990 
+dissimilarity index" = 2, "Main results: 2SLS RDI as instrument for 1990 dissimilarity" = 2, "Falsification: Reduced form effect  of RDI among cities  far from the south" = 2))
+
+
+# Second part of the table 
+# OLS: Effect of 1990  dissimilarity index - White:Blacks ration
+first_column <- list(tab2_p2_reg1, tab2_p2_reg2,
+                     tab2_p2_reg3, tab2_p2_reg4)
+
+# Get coefficients
+first_matrix <- as_tibble(t(sapply(first_column, get_stats))) %>%
+  tibble::rownames_to_column(var = "model_name") %>%
+  unnest(cols = everything()) %>%
+  table_of_coef()
+
+
+# Main results: 2SLS RDI as instrument for  1990 dissimilarity - White:Blacks ration
+second_column <- list(tab2_p2_ivreg1, tab2_p2_ivreg2, 
+                      tab2_p2_ivreg3, tab2_p2_ivreg4)
+
+second_matrix <- as_tibble(t(sapply(second_column, get_stats))) %>%
+  tibble::rownames_to_column(var = "model_name") %>%
+  unnest(cols = everything()) %>%
+  table_of_coef()
+
+# Falsification:  Reduced form effect  of RDI among cities far from the south - White:Blacks ration
+third_column <- list(tab2_p2_reg5, tab2_p2_reg6,
+                     tab2_p2_reg7, tab2_p2_reg8)
+
+third_matrix <- as_tibble(t(sapply(third_column, get_stats))) %>%
+  tibble::rownames_to_column(var = "model_name") %>%
+  unnest(cols = everything()) %>%
+  table_of_coef()
+
+# Bind columns
+table_2_matrix_second <- cbind(first_matrix, second_matrix, third_matrix) %>%
+  rbind(c(121, 121, 29)) # Adds the size of the sample
+
+# Change colnames to nothing
+colnames(table_2_matrix_second) <- c("", "", "")
+
+
+# Change rownames
+rownames(table_2_matrix_second) <- c("90 white: 90 black",
+                                     "10 white: 10 black", 
+                                     "90 white: 10 black", 
+                                     "90 black: 10 white", 
+                                     "N")
+
+
+# Generate first half the table 2
+table_2_second_kable <- kable(table_2_matrix_second, "html", escape = FALSE, align = c( 'c', 'c', 'c'), caption = " Table 2 - lower half") %>%
+  add_header_above(c("Between-race inequality" = 1, "OLS: Effect of 1990 
+dissimilarity index" = 1, "Main results: 2SLS RDI as instrument for 1990 dissimilarity" = 1, "Falsification: Reduced form effect  of RDI among cities  far from the south" = 1))
+
+```
+
+```{r}
+#| output: asis
+# Print the table
+table_2_first_kable
+```
+
+```{r}
+#| output: asis
+# Print the table
+table_2_second_kable
+```
 
 ## Table 3
 
@@ -363,8 +478,88 @@ tab3_ivreg48 <- iv_robust(povrate_b ~ dism1990 + lenper + herfscore |herf + lenp
 
 ```
 
+```{r}
+# Load the names of the regression
+# It creates string tab3_ivreg_number
+model_names <- paste0("tab3_ivreg", 1:48)
 
 
+# List all regression models
+models_tab3 <- mget(model_names) 
+
+# Function to get dism1990 coefficient
+get_stats <- function(model) {
+  tidy(model) %>% 
+    filter(term == "dism1990") %>% 
+    select(estimate, std.error, p.value) %>% 
+    as.list()
+}
+
+
+# Get coefficients
+tab3_coef <- as_tibble(t(sapply(models_tab3, get_stats))) %>%
+  tibble::rownames_to_column(var = "model_name") %>%
+  unnest(cols = everything())
+
+
+# Generating the matrix with stored values
+table_3 <- c()
+# Loop to define significance
+for (i in 1:nrow(tab3_coef)){
+  coeff_est <- round(tab3_coef[i,2], digits = 3)
+  if (tab3_coef[i,"p.value"] <= 0.01){
+    coeff_est <- paste0(coeff_est, "***")
+  } else if (tab3_coef[i,"p.value"] > 0.01 & tab3_coef[i,"p.value"] <= 0.05){
+    coeff_est <- paste0(coeff_est, "**")
+  } else if (tab3_coef[i,"p.value"] > 0.05 & tab3_coef[i,"p.value"] <= 0.1){
+    coeff_est <- paste0(coeff_est, "*")
+  }
+  table_3[i] <- paste(coeff_est, "<br>(", round(tab3_coef[i,"p.value"], digits = 3), ")", sep = "")
+}
+
+table_3_matrix <- matrix(table_3, ncol =  4, byrow  = T)
+
+# Adds a NA row in the first and seventh row
+table_3_matrix  <- rbind(rbind(rep("", 4), table_3_matrix[1:6,]) , rbind(rep("", 4), table_3_matrix[7:11,]))
+
+
+# Define column column names
+colnames(table_3_matrix) <- c("White", "Black", "White", "Black")
+
+# Define row names
+row_name <- c("With controls for 1990 city characteristics", "Population", "Percent black", "Education", "Share employed in manufacturing", 
+                              "Labor force participation", "Number of local governments (N = 69)", "With controls for 1920 city characteristics",
+                              "Population", "Percent black", "Literacy", "Share employed in manufacturing", "Labor force participation")
+
+
+# Adding the first row to be the name of the variable
+table_3_matrix <- cbind(row_name, table_3_matrix)
+
+# Generate the table
+table_3_kable <- kable(table_3_matrix, "html", escape = FALSE, align = c('l', 'l', 'c', 'l', 'c')) %>%
+  add_header_above(c("Type" = 1, "Dependent variable: GINI" = 2, "Dependent variable: Poverty Rate" = 2)) %>%
+  collapse_rows(columns = 1, valign = "top")
+
+
+
+
+
+
+
+```
+
+```{r}
+#| output: asis
+# Print the table
+table_3_kable
+```
+
+```{r}
+#| echo: FALSE
+#| output: asis
+
+cat('<p style="text-align:center">Note: *** p<0.01, ** p<0.05, * p<0.1. The p-values denote the significance level of the coefficients.</p>')
+```
 
 ## Table 4
 
@@ -437,7 +632,6 @@ msummary(models_unlisted,
 
 ## Table 5
 
-
 ```{r}
 # Separating the table 5 data into the two desired groups --------------------------------------------------------
 
@@ -491,7 +685,6 @@ tab5_reg15 <- feols(collgrad ~ herf + lenper |age , cluster = "name", data = tab
 tab5_reg16 <- feols(collgrad ~ herf + lenper |age , cluster = "name", data = table5_black_close)
 
 ```
-
 
 ```{r}
 #| output: asis
